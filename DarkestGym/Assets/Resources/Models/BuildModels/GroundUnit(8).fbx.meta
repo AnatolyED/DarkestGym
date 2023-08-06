@@ -1,19 +1,19 @@
 fileFormatVersion: 2
 guid: 4aefe5967894be948a64c5147222a4d6
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: crystals3
-    second: {fileID: 2100000, guid: c39874f84ef24744eb9f226d8fb2ed0f, type: 2}
+      name: ground
+    second: {fileID: -3954252153447468787, guid: 1d42314a513c9104c8d0c05cfc326adb, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ground
-    second: {fileID: 2100000, guid: 01e709f3214001649b264b23cad09b3c, type: 2}
+      name: ground2
+    second: {fileID: 289069806242840469, guid: 1d42314a513c9104c8d0c05cfc326adb, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -24,7 +24,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -50,7 +50,6 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -78,7 +77,6 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -111,7 +109,6 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
