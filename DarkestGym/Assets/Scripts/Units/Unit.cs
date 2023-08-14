@@ -16,6 +16,7 @@ public class Unit : ScriptableObject
     [Header("Показатели связанные с атакой")]
     [SerializeField, Tooltip("Показатель атаки")] private float _damage;
     [SerializeField, Tooltip("Множитель урона")] private float _damageMultiplier;
+    [SerializeField, Tooltip("Дальность атаки")] private int _range;
     [Header("Показатели связанные с броней")]
     [SerializeField, Tooltip("Показатель брони")] private float _armor;
     [SerializeField, Tooltip("Множитель брони")] private float _armorMultiplier;
@@ -50,6 +51,10 @@ public class Unit : ScriptableObject
     {
         get { return _damageMultiplier; }
     }
+    public int GetRange
+    {
+        get { return _range; }
+    }
     public float GetArmor
     {
         get { return _armor; }
@@ -57,5 +62,9 @@ public class Unit : ScriptableObject
     public float GetArmorMultiplier
     {
         get { return _armorMultiplier; }
+    }
+    public List<AbilityName> UnitAbility
+    {
+        get { return _unitAbility; }
     }
 }

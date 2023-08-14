@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e323f9c032294b74b910154e786f45c5, type: 3}
   m_Name: RangeLevelTwo
   m_EditorClassIdentifier: 
-  _name: 
-  _speed: 0
-  _scorePoint: 0
-  _health: 0
+  _name: Range lvl 1
+  _speed: 1
+  _scorePoint: 5
+  _health: 385
   _protectionIndicatorHealth: 0
-  _damage: 0
-  _damageMultiplier: 0
+  _damage: 40
+  _damageMultiplier: 1.165
+  _range: 5
   _armor: 0
   _armorMultiplier: 0
   _unitAbility: 

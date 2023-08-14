@@ -19,6 +19,7 @@ MonoBehaviour:
   _protectionIndicatorHealth: 0
   _damage: 80
   _damageMultiplier: 1.1
+  _range: 1
   _armor: 80
   _armorMultiplier: 1.12
   _unitAbility: 000000000100000002000000

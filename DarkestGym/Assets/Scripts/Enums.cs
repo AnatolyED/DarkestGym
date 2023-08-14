@@ -1,6 +1,6 @@
 using UnityEngine;
 
-enum AbilityName
+public enum AbilityName
 {
     //Гигажаб
     [Tooltip("Презрение к слабым")] ContempForTheWeak,
@@ -15,4 +15,21 @@ enum AbilityName
     [Tooltip("Отражение урона в ближнем бою")] ReflectionOfMeleeDamage,
     //Range
     [Tooltip("Слабость в ближнем бою")] WeaknessInCloseCombat
+}
+
+public enum PlayerNumber
+{
+    None,
+    First,
+    Second
+}
+
+public enum Action
+{
+    Idle,
+    Move,
+    Attack,
+    Block,
+    Ability,
+    EndMove
 }
