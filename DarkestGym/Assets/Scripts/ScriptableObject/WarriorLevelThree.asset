@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WarriorLevelThree
   m_EditorClassIdentifier: 
   _name: Warrior lvl 3
+  _sprite: {fileID: 21300000, guid: 2ee04de7e4480404b9531a0e3b10f757, type: 3}
   _speed: 2
   _scorePoint: 6
   _health: 700
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 1
   _armor: 100
   _armorMultiplier: 1
-  _unitAbility: 

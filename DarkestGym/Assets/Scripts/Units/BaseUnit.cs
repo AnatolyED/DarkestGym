@@ -7,11 +7,11 @@ public class BaseUnit : MonoBehaviour
 {
     [Header("Состояние персонажа")]
     [SerializeField] private PlayerNumber _playerNumber;
-    [SerializeField] private Action action;
-    [SerializeField] private BaseUnit target;
+    [SerializeField] private Action _action;
+    [SerializeField] private BaseUnit _target;
 
     [Header("Анимация")]
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
 
     [Header("UI компоненты юнита")]
     [SerializeField] private Button[] actionButtons;
@@ -20,6 +20,7 @@ public class BaseUnit : MonoBehaviour
     [Header("Информация о персонаже")]
     [SerializeField] public Unit _scriptableObject;
     [SerializeField] private string _name;
+    [SerializeField] private Sprite _sprite;
     [SerializeField] private int _speed;
     [SerializeField] private int _scorePoint;
     [SerializeField] private float _health;
@@ -29,13 +30,13 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] private int _range;
     [SerializeField] private float _armor;
     [SerializeField] private float _armorMultiplier;
-    [SerializeField] private List<AbilityName> _abilityList;
     #endregion
 
     private void Start()
     {
-        action = Action.Idle;
-        _name = _scriptableObject.GetName;
+        _action = Action.Idle;
+        Name = _scriptableObject.GetName;
+        Sprite = _scriptableObject.GetSprite;
         Speed = _scriptableObject.GetSpeed;
         ScorePoint = _scriptableObject.GetScorePoint;
         Health = _scriptableObject.GetHealth;
@@ -44,7 +45,6 @@ public class BaseUnit : MonoBehaviour
         DamageMultiplier = _scriptableObject.GetDamageMultiplier;
         Armor = _scriptableObject.GetArmor;
         ArmorMultiplier = _scriptableObject.GetArmorMultiplier;
-        AbilityList = _scriptableObject.UnitAbility;
         StartCoroutine(UnitState());
     }
 
@@ -63,6 +63,21 @@ public class BaseUnit : MonoBehaviour
                 Debug.Log("Ну тут явно какой-то обман");
             }
         }
+    }
+    public Sprite Sprite
+    {
+        get { return _sprite; }
+        set
+        {
+            if(_scriptableObject.GetSprite == value)
+            {
+                _sprite = value;
+            }
+        }
+    }
+    public Animator Animator
+    {
+        get { return _animator;}
     }
     public int Speed
     {
@@ -204,21 +219,6 @@ public class BaseUnit : MonoBehaviour
             }
         }
     }
-    public List<AbilityName> AbilityList
-    {
-        get { return _abilityList; }
-        set
-        {
-            if (_scriptableObject.UnitAbility == value)
-            {
-                _abilityList = value;
-            }
-            else
-            {
-                Debug.Log("Где-то ошибка");
-            }
-        }
-    }
     public PlayerNumber GetUnitNumber
     {
         get { 
@@ -236,7 +236,7 @@ public class BaseUnit : MonoBehaviour
     {
         while (true)
         {
-            switch (action)
+            switch (_action)
             {
                 case Action.Idle:
                     break;
@@ -247,7 +247,7 @@ public class BaseUnit : MonoBehaviour
                     break;
                 case Action.Block:
                     ProtectionIndicatorHealth += Actions.Block(ScorePoint,Armor,ArmorMultiplier);
-                    action = Action.Idle;
+                    _action = Action.Idle;
                     break;
                 case Action.Ability:
                     break;

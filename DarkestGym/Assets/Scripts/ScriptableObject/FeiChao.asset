@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FeiChao
   m_EditorClassIdentifier: 
   _name: FeiChao
+  _sprite: {fileID: 21300000, guid: 7be9f38bddcec2440a362e19ef1878af, type: 3}
   _speed: 3
   _scorePoint: 7
   _health: 800
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 1
   _armor: 100
   _armorMultiplier: 1
-  _unitAbility: 03000000

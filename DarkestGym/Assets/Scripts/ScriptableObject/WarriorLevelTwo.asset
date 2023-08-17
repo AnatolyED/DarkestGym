@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WarriorLevelTwo
   m_EditorClassIdentifier: 
   _name: Warrior lvl 2
+  _sprite: {fileID: 21300000, guid: f6122e327a5aab7478924538afaf4305, type: 3}
   _speed: 2
   _scorePoint: 5
   _health: 550
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 1
   _armor: 85
   _armorMultiplier: 1
-  _unitAbility: 

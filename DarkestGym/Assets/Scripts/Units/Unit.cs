@@ -6,6 +6,9 @@ public class Unit : ScriptableObject
 {
     [Header("Данные юнита")]
     [SerializeField, Tooltip("Название юнита")] private string _name;
+    [SerializeField, Tooltip("Картинка юнита")] private Sprite _sprite;
+    [Header("Анимация")]
+    [SerializeField,Tooltip("Аниматор юнита")] private Animator _animator;
     [Header("Показатели связанные с действиями")]
     [SerializeField, Tooltip("Название юнита")] private int _speed;
     [SerializeField, Tooltip("Очки для хода")] private int _scorePoint;
@@ -20,12 +23,15 @@ public class Unit : ScriptableObject
     [Header("Показатели связанные с броней")]
     [SerializeField, Tooltip("Показатель брони")] private float _armor;
     [SerializeField, Tooltip("Множитель брони")] private float _armorMultiplier;
-    [Header("Способности персонажа")] 
-    [SerializeField,Tooltip("Способности персонажа")]private List<AbilityName> _unitAbility;
 
+    #region Гетеры
     public string GetName
     {
         get { return _name; }
+    }
+    public Sprite GetSprite
+    {
+        get { return _sprite; }
     }
     public int GetSpeed
     {
@@ -63,8 +69,5 @@ public class Unit : ScriptableObject
     {
         get { return _armorMultiplier; }
     }
-    public List<AbilityName> UnitAbility
-    {
-        get { return _unitAbility; }
-    }
+    #endregion
 }

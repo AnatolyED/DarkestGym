@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gigajab
   m_EditorClassIdentifier: 
   _name: Gigajab
+  _sprite: {fileID: 21300000, guid: 6095b366002f58f45b01dfd4b6d7b8a3, type: 3}
   _speed: 1
   _scorePoint: 7
   _health: 100
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 1
   _armor: 80
   _armorMultiplier: 1.12
-  _unitAbility: 000000000100000002000000

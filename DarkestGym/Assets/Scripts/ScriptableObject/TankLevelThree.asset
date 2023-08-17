@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TankLevelThree
   m_EditorClassIdentifier: 
   _name: Tank lvl 3
+  _sprite: {fileID: 21300000, guid: 5b7d24c00267f9948b00c593be32c050, type: 3}
   _speed: 0
   _scorePoint: 6
   _health: 1000
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 1
   _armor: 60
   _armorMultiplier: 1.17
-  _unitAbility: 06000000

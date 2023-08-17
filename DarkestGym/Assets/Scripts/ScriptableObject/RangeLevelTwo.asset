@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RangeLevelTwo
   m_EditorClassIdentifier: 
   _name: Range lvl 1
+  _sprite: {fileID: 21300000, guid: bb19a24c83c8d2a438ab6f8df4aa5caa, type: 3}
   _speed: 1
   _scorePoint: 5
   _health: 385
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 5
   _armor: 0
   _armorMultiplier: 0
-  _unitAbility: 

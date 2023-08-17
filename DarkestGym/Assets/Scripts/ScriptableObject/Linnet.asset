@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Linnet
   m_EditorClassIdentifier: 
   _name: Linnet
+  _sprite: {fileID: 21300000, guid: 9d2fdba38b10549458ba1ff4b6bc6190, type: 3}
   _speed: 0
   _scorePoint: 7
   _health: 600
@@ -22,4 +23,3 @@ MonoBehaviour:
   _range: 3
   _armor: 0
   _armorMultiplier: 0
-  _unitAbility: 0400000005000000

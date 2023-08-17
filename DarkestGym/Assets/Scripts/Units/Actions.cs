@@ -13,7 +13,7 @@ public class Actions : MonoBehaviour
     {
 
     }
-    public static void Attack(int point,float damage, float damageMultiplyer,List<AbilityName> ability,BaseUnit enemy)
+    public static void Attack(int point,float damage, float damageMultiplyer,List<Ability> ability,BaseUnit enemy)
     {
 
 
