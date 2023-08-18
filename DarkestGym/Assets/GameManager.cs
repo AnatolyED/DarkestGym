@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<GameObject> _prefabCell = new List<GameObject>();
     [SerializeField] public List<GameObject> _prefabObstacles = new List<GameObject>();
 
+    [Space,Header("Объекты для работы с генерацией команды")]
+    [SerializeField] private List<GameObject> _unitsPrefabPull;
+
     [Space,Header("Все для работы с клетками")]
     [SerializeField] private int _points;
     
