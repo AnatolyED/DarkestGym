@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class TeamGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static void GenerateTeamSinglePlayer(bool generate, Player player)
     {
-        
-    }
+        if (!generate)
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }else
+        {
+
+        }
     }
 }

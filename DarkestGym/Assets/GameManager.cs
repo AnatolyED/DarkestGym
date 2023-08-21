@@ -13,14 +13,14 @@ public class GameManager : MonoBehaviour
     [Space,Header("Объекты для работы с генерацией команды")]
     [SerializeField] private List<GameObject> _unitsPrefabPull;
 
-    [Space,Header("Все для работы с клетками")]
+    [Space, Header("Все для работы с клетками")]
     [SerializeField] private int _points;
     
     [Space,Header("Все дря работы с игровым процессом")]
     [SerializeField] private Player _playerOne;
     [SerializeField] private Player _playerTwo;
     [SerializeField] private PlayerNumber _playerTurn;
-    [SerializeField] private GameObject _unitThatWallks;
+    [SerializeField] private GameObject _activeUnit;
     [SerializeField] private Action _action;
 
     private void Start()
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         get { return _points; }
         set
         {
-            if(_unitThatWallks.GetComponent<BaseUnit>()._scriptableObject.GetScorePoint >= value)
+            if(_activeUnit.GetComponent<BaseUnit>()._scriptableObject.GetScorePoint >= value)
             {
                 _points = value;
             }
@@ -75,11 +75,13 @@ public class GameManager : MonoBehaviour
     }
     public GameObject Unit
     {
-        get { return _unitThatWallks; }
+        get { return _activeUnit; }
         set
         {
-            _unitThatWallks = value;
+            _activeUnit = value;
         }
     }
 
+
+    
 }

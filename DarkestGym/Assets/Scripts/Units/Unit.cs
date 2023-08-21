@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Unit", menuName = "ScriptableObject/UnitScriptableObject")]
+[CreateAssetMenu(fileName = "Unit", menuName = "UnitBuild/UnitScriptableObject")]
 public class Unit : ScriptableObject
 {
     [Header("Данные юнита")]
