@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ground
-    second: {fileID: -3954252153447468787, guid: 1d42314a513c9104c8d0c05cfc326adb, type: 3}
+    second: {fileID: 2459052137618088431, guid: 1d42314a513c9104c8d0c05cfc326adb, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
