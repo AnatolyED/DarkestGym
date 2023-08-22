@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     [Header("Объекты для работы с полем")]
     [SerializeField] public List<Transform> _cells = new List<Transform>();
+    [SerializeField] public List<Transform> _waterObstaclesCells = new List<Transform>();
     [SerializeField] public List<Transform> _obstacles = new List<Transform>();
     [SerializeField] public List<GameObject> _prefabCell = new List<GameObject>();
+    [SerializeField] public List<GameObject> _waterpObstaclesPrefab = new List<GameObject>();
     [SerializeField] public List<GameObject> _prefabObstacles = new List<GameObject>();
 
     [Space,Header("Объекты для работы с генерацией команды")]
