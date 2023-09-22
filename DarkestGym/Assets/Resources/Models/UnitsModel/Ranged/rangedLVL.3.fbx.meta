@@ -1,39 +1,39 @@
 fileFormatVersion: 2
 guid: 0420b94fe1c8b194dbf20f61f79b33dc
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body1
-    second: {fileID: 2100000, guid: d1cbfd74d0e982343af516ed97ed984b, type: 2}
+    second: {fileID: 2100000, guid: 8775d3ec9d8da2045a2fc2ef932bbe4d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body2
-    second: {fileID: 2100000, guid: 35a2f86e89827b046b9ad07d00632a34, type: 2}
+    second: {fileID: 2100000, guid: 2351f5a86e727d949ac7ead63cbd63d3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Hat3
-    second: {fileID: 2100000, guid: b26fd4dfd10f4124187bf3f1f73240be, type: 2}
+    second: {fileID: 2100000, guid: ad552469bf780e24e9f41a278c5ba089, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: belt
-    second: {fileID: 2100000, guid: 0b57ac6eaa91d9a4187ba2fd2b4beb79, type: 2}
+    second: {fileID: 2100000, guid: 9711b3c9157114d4b9e6b0dab0636e39, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: belt4
-    second: {fileID: 2100000, guid: 97d52e36d9e80da4d9bf425d9a96cad8, type: 2}
+    second: {fileID: 2100000, guid: 403bc0187290d8b4e8c3f8ed66cc17ae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: bigCrystal2
-    second: {fileID: 2100000, guid: 5f17b83b33333414c8246609c3448111, type: 2}
+    second: {fileID: 2100000, guid: 878f18b6200fec6419cb09b01c19d7a1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -44,7 +44,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -70,6 +70,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -97,6 +98,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -129,6 +131,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

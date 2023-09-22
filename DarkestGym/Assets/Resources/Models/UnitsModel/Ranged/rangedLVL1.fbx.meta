@@ -1,44 +1,44 @@
 fileFormatVersion: 2
-guid: b1bae81b5547af04cb8834bce8eac174
+guid: dc2e5701557d58f4181c4105afd7cc6a
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body1
-    second: {fileID: 2100000, guid: 656090726fd532543ba9c19d87c39230, type: 2}
+    second: {fileID: 2100000, guid: 4c9b0f290f70fb147a07bf088fefc617, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body2
-    second: {fileID: 2100000, guid: 887660c64edb3e7448936ce53965946f, type: 2}
+    second: {fileID: 2100000, guid: d8038b42462a45f45a6e5ee9bc222f78, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Head1
-    second: {fileID: 2100000, guid: cdaf1f6478fcdfa498d7e78e3cdf9d6e, type: 2}
+    second: {fileID: 2100000, guid: 7733cad882441dd4c97b9fa226a89391, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: belt
-    second: {fileID: 2100000, guid: e4a72dd05199a5e42af38fc228f1e5b9, type: 2}
+    second: {fileID: 2100000, guid: 3307fb43955963343b2a05d0f86e23a7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: hat
-    second: {fileID: 2100000, guid: dc1620057cbb9574d8caab324f28f426, type: 2}
+    second: {fileID: 2100000, guid: a1384a12377a18b42b18818d86e0af36, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: hood
-    second: {fileID: 2100000, guid: ff925f6fbcdf6834888549f6338f6be7, type: 2}
+    second: {fileID: 2100000, guid: 8d4ac1c485b36af4184fd9b9b4d42d53, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: trousers
-    second: {fileID: 2100000, guid: e2d64b23bee9bdd45bdd0401d4b8fb7e, type: 2}
+    second: {fileID: 2100000, guid: 1f01cf320180f54418f0f74fe137c25e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -49,7 +49,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -75,6 +75,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -102,6 +103,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -134,6 +136,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

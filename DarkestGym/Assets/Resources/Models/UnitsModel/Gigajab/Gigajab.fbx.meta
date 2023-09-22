@@ -1,59 +1,59 @@
 fileFormatVersion: 2
 guid: 36489fbbd4d87f04a8f41aaf8724f62a
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CrYsTals
-    second: {fileID: 2100000, guid: 3deb239fc406e3a49a7c75b68cd3c2fc, type: 2}
+    second: {fileID: 2100000, guid: d8780f80c218b7b488bd844172bafee8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: avarage(stone_skin)
-    second: {fileID: 2100000, guid: ed904d960154fa0448a0401e1e69d909, type: 2}
+    second: {fileID: 2100000, guid: 05fb807f0715cfc4c9031fe88983ccf6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: belt
-    second: {fileID: 2100000, guid: 5a44155c9a8446940a467b70bc5d388e, type: 2}
+    second: {fileID: 2100000, guid: 94099ad143bd432469d5e2520a8b02a1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: dark_skin
-    second: {fileID: 2100000, guid: 79eb064a9d234364da0f3809de482aa6, type: 2}
+    second: {fileID: 2100000, guid: 4da080f6a77693644b9b190607b320e1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: eyes
-    second: {fileID: 2100000, guid: d5aa56b4402a39947881d87eb5cd7f0f, type: 2}
+    second: {fileID: 2100000, guid: eed37833b0e957c4daebfaecc9393be1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: fangs
-    second: {fileID: 2100000, guid: be2918bbc3c1543449152bcb7aa1e572, type: 2}
+    second: {fileID: 2100000, guid: f5e7ddb0f159e6d4b9645ac842887b45, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: fists
-    second: {fileID: 2100000, guid: a011a62158206ad45874c0503bcff72c, type: 2}
+    second: {fileID: 2100000, guid: c7da5ea6f3a36ca4f935c54e6abaf66f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: light_skin
-    second: {fileID: 2100000, guid: 327cde581f6f94447bd3245fe932d037, type: 2}
+    second: {fileID: 2100000, guid: b2425f33b76685c4e9a4f3f138ae6da4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: normal_skin
-    second: {fileID: 2100000, guid: d83c9be59d3b2554692250678a8d5713, type: 2}
+    second: {fileID: 2100000, guid: 1079e1132c0c6a0449fce49fe8421a5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: trousers
-    second: {fileID: 2100000, guid: 85dfa64f48e8cde4a838983309b9d9d7, type: 2}
+    second: {fileID: 2100000, guid: 5825efc6decef1749891f5bcb0dbea9d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -64,7 +64,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -90,6 +90,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -117,6 +118,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -149,6 +151,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
