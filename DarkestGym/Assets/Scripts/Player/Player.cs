@@ -16,7 +16,10 @@ public class Player : MonoBehaviour
     {
         get { return _playerNumber; }
     }
-
-    [SerializeField] private List<GameObject> _unitList = new List<GameObject>(6);
+    public Team Team
+    {
+        get { return _team; }
+        set { _team = value; }
+    }
     
 }

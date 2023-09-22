@@ -11,8 +11,8 @@ public class Cell : MonoBehaviour
     [SerializeField] public GameManager _gameManager;
 
     [Space, Header("Unit")]
-    [SerializeField] private BaseUnit _unitOnTheCell;
-    public BaseUnit GetUnit
+    [SerializeField] private GameObject _unitOnTheCell;
+    public GameObject GetUnit
     {
         get { return _unitOnTheCell; }
         set 
@@ -27,7 +27,6 @@ public class Cell : MonoBehaviour
             }
         }
     }
-
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();

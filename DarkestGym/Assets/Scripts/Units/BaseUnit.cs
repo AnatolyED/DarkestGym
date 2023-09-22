@@ -31,7 +31,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] private float _armorMultiplier;
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         _action = Action.Idle;
         Name = _scriptableObject.GetName;
@@ -42,8 +42,13 @@ public class BaseUnit : MonoBehaviour
         ProtectionIndicatorHealth = _scriptableObject.GetProtectionIndicatorHealth;
         Damage = _scriptableObject.GetDamage;
         DamageMultiplier = _scriptableObject.GetDamageMultiplier;
+        Range = _scriptableObject.GetRange;
         Armor = _scriptableObject.GetArmor;
         ArmorMultiplier = _scriptableObject.GetArmorMultiplier;
+    }
+
+    private void Start()
+    {
         StartCoroutine(UnitState());
     }
 
@@ -53,14 +58,7 @@ public class BaseUnit : MonoBehaviour
         get { return _name; }
         set
         {
-            if (_scriptableObject.name == value)
-            {
-                _name = value;
-            }
-            else
-            {
-                Debug.Log("Ну тут явно какой-то обман");
-            }
+            _name = value;
         }
     }
     public Sprite Sprite
@@ -240,6 +238,11 @@ public class BaseUnit : MonoBehaviour
                 case Action.Idle:
                     break;
                 case Action.Move:
+                    while (true)
+                    {
+
+                    }
+                    Actions.Move();
                     break;
                 case Action.Attack:
                     

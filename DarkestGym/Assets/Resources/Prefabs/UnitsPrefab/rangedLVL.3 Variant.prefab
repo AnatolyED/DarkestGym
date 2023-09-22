@@ -5,7 +5,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0420b94fe1c8b194dbf20f61f79b33dc, type: 3}
@@ -53,12 +52,6 @@ PrefabInstance:
       value: rangedLVL.3 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0420b94fe1c8b194dbf20f61f79b33dc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6928587878434622060}
   m_SourcePrefab: {fileID: 100100000, guid: 0420b94fe1c8b194dbf20f61f79b33dc, type: 3}
 --- !u!1 &4959298788197252123 stripped
 GameObject:
@@ -77,14 +70,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ab2565d9eb3a14fbc594502e910e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerNumber: 0
+  _action: 0
+  _target: {fileID: 0}
+  _animator: {fileID: 0}
+  actionButtons: []
   _scriptableObject: {fileID: 11400000, guid: d5964ace2a1d8854694c46b51f7947c7, type: 2}
   _name: 
+  _sprite: {fileID: 0}
   _speed: 0
   _scorePoint: 0
   _health: 0
   _protectionIndicatorHealth: 0
   _damage: 0
   _damageMultiplier: 0
+  _range: 0
   _armor: 0
   _armorMultiplier: 0
-  _playerNumber: 0

@@ -23,6 +23,7 @@ namespace DarkestGym.FieldGenerator
         {
             MapGenerator();
         }
+        #region MapGenerator
         private void MapGenerator()
         {
             int _randomPrefab;
@@ -70,7 +71,6 @@ namespace DarkestGym.FieldGenerator
                 }
             }
         }
-
         private int TakeBuildRandomiserCells()
         {
             int _randomNum = Random.Range(0, 100);
@@ -107,5 +107,6 @@ namespace DarkestGym.FieldGenerator
                 return 3;
             }
         }
+        #endregion
     }
 }

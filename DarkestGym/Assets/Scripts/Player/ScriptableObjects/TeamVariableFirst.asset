@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bc35e33051e7c40901b80ff1f30313, type: 3}
   m_Name: TeamVariableFirst
   m_EditorClassIdentifier: 
-  _unitList: []
+  _unitList:
+  - {fileID: 1154309148256220324, guid: 71a6b9fb3d4232e4caa2fea5a609782f, type: 3}
+  - {fileID: 1154309148256220324, guid: 71a6b9fb3d4232e4caa2fea5a609782f, type: 3}
+  - {fileID: 7189116526446139791, guid: e7dd4de34b4a0c54f9e3058af2766b8f, type: 3}
+  - {fileID: 1378802577495170842, guid: 9bf7fa79777430043b1067004efc4663, type: 3}
+  - {fileID: 1174613129560490461, guid: 65a0782ca29feff488a823aa72658787, type: 3}
+  - {fileID: 405408619721854093, guid: 305133e3cbc8b4745974845bdcc90d48, type: 3}
