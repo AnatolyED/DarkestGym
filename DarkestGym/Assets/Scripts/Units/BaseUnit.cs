@@ -240,9 +240,10 @@ public class BaseUnit : MonoBehaviour
                 case Action.Move:
                     while (true)
                     {
-
+                        break;
+                        //Трали-вали
                     }
-                    Actions.Move();
+                    //Actions.Move();
                     break;
                 case Action.Attack:
                     
