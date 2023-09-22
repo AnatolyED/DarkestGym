@@ -1,39 +1,39 @@
 fileFormatVersion: 2
 guid: 3694eb67155ebc440a6010a2b9fdf5eb
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BigCrystal1
-    second: {fileID: 2100000, guid: 4d33321825665e0468089153e070fdb2, type: 2}
+    second: {fileID: 2100000, guid: 3086c6dbdbe99384dbda644564205115, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body1
-    second: {fileID: 2100000, guid: a1f325a9456944442a1886c0d910086d, type: 2}
+    second: {fileID: 2100000, guid: e1700d15c86f98341b8e58cc612e5b5f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body2
-    second: {fileID: 2100000, guid: 2101290f0714d1344a4bd437a716e7a6, type: 2}
+    second: {fileID: 2100000, guid: 5f15fe9eb99666a46b802f1092a61fce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Guard&handle
-    second: {fileID: 2100000, guid: f226fac473c489b4b8d95f1b99058c25, type: 2}
+    second: {fileID: 2100000, guid: 8971ecf7cb5dbeb4a856eef1ae6f52c5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: belt
-    second: {fileID: 2100000, guid: 4b56f00ebea8fad4c9aa4e486e47d20a, type: 2}
+    second: {fileID: 2100000, guid: c77ca35f8b76d0c41a8c04c7d6493cac, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: belt2
-    second: {fileID: 2100000, guid: b29555c08789bcc479faffdfb8f76c90, type: 2}
+    second: {fileID: 2100000, guid: 7c16c6b89b29ca04da3918eb21ed3996, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -44,7 +44,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -70,7 +70,6 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -98,7 +97,6 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -131,7 +129,6 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
