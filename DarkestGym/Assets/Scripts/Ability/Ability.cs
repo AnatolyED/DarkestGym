@@ -11,6 +11,8 @@ public class Ability : ScriptableObject
     {
 
     }
+
+
 }
 
 [CreateAssetMenu(fileName = "Passive abillity",menuName = "CreateSkill/PassiveSkill")]
