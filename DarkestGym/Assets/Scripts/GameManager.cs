@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// GameManager instance property that is realizing Singleton pattern
+    /// </summary>
+    public static GameManager Instance { get; private set; }
+
     [Header("Все дря работы с игровым процессом")]
     [SerializeField] private PlayerNumber _playerTurn;
     [SerializeField] private GameObject _activeUnit;
@@ -32,7 +37,33 @@ public class GameManager : MonoBehaviour
 
     [Space, Header("Все для работы с клетками")]
     [SerializeField] private int _points;
-    
+
+    /// <summary>
+    /// Instance of RoundManager 
+    /// </summary>
+    public RoundManager RoundManager { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("GameManager Instance does not equal null on Awake method");
+        }
+        Instance = this;
+
+        if(RoundManager != null)
+        {
+            Debug.LogError("RoundManager does not equal null on Awake method");
+        }
+        if(TryGetComponent(out RoundManager manager))
+        {
+            RoundManager = manager;
+        }
+        else
+        {
+            Debug.LogError("RoundManager have not been found on GameManager object");
+        }
+    }
 
     private void Start()
     {
