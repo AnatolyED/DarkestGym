@@ -39,7 +39,6 @@ public class Cell : MonoBehaviour
         if (tag == "StoneCell") _meshRenderer.materials[1].color = color;
         else _meshRenderer.material.color = color;
     }
-
     private void OnMouseEnter()
     {
         ChangeColor(Color.green);

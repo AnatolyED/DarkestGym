@@ -21,5 +21,9 @@ public class Player : MonoBehaviour
         get { return _team; }
         set { _team = value; }
     }
+    public GameManager GetGameManager
+    {
+        get { return _gameManager; }
+    }
     
 }

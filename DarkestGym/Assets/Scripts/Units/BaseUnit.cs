@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class BaseUnit : MonoBehaviour
 {
@@ -13,7 +16,10 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [Header("UI компоненты юнита")]
-    [SerializeField] private Button[] actionButtons;
+    [SerializeField] private List<Buttons> actionButtons;
+
+    [Header("Игровой менеджер")]
+    [SerializeField] private GameManager _gameManager;
     
     #region Статы персонажа
     [Header("Информация о персонаже")]
@@ -53,6 +59,11 @@ public class BaseUnit : MonoBehaviour
     }
 
     #region Работа с параметрами
+
+    public GameManager SetGameManager
+    {
+        set { _gameManager = value; }
+    }
     public string Name
     {
         get { return _name; }
@@ -226,6 +237,17 @@ public class BaseUnit : MonoBehaviour
             _playerNumber = value;
         }
     }
+    public float TakeDamage
+    {
+        set 
+        { 
+            _health -= value;
+            if (_health <= 0) 
+            {
+                Die();
+            }
+        }
+    } //Получения урона персонажами;
     #endregion
 
     #region State
@@ -233,20 +255,64 @@ public class BaseUnit : MonoBehaviour
     {
         while (true)
         {
+            //Для работы с клетками
+            Cell newCell = null;
+            BaseUnit target = null;
+            Vector3 mousePosition = Input.mousePosition;
+
             switch (_action)
             {
                 case Action.Idle:
                     break;
                 case Action.Move:
-                    while (true)
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        break;
-                        //Трали-вали
+                        Ray ray = _gameManager.GetGamera.ScreenPointToRay(mousePosition);
+                        if (Physics.Raycast(ray, out RaycastHit hit))
+                        {
+                            if (hit.transform.gameObject.GetComponent<Cell>() != null && hit.transform.gameObject.GetComponent<Cell>().GetUnit == null)
+                            {
+                                newCell = hit.transform.gameObject.GetComponent<Cell>();
+                            }
+                            else
+                            {
+                                Debug.Log("Сюда нельзя ходить");
+                            }
+                        }
+                        if(newCell != null)
+                        {
+                            Actions.Move(this.gameObject, newCell);
+                            _action = Action.Idle;
+                        }
                     }
-                    //Actions.Move();
                     break;
                 case Action.Attack:
-                    
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Ray ray = _gameManager.GetGamera.ScreenPointToRay(mousePosition);
+                        if (Physics.Raycast(ray, out RaycastHit hit))
+                        {
+                            if (hit.transform.gameObject.GetComponent<Cell>() != null && hit.transform.gameObject.GetComponent<Cell>().GetUnit != null)
+                            {
+                                target = hit.transform.gameObject.GetComponent<Cell>().GetUnit.GetComponent<BaseUnit>();
+
+                            }
+                            else
+                            {
+                                Debug.Log("Этого бить нельзя!");
+                            }
+                        }
+                        if (this.GetUnitNumber != target.GetUnitNumber)
+                        {
+                            target.TakeDamage = Actions.Attack(4, GetComponent<BaseUnit>()); // цифра - затычка
+                            Debug.Log(_name + " нанес " + Actions.Attack(4, GetComponent<BaseUnit>()) + " урона " + target.Name);
+                            _action = Action.Idle;
+                        }
+                        else
+                        {
+                            Debug.Log("Сократи дистанцию!");
+                        }
+                    }
                     break;
                 case Action.Block:
                     ProtectionIndicatorHealth += Actions.Block(ScorePoint,Armor,ArmorMultiplier);
@@ -263,4 +329,9 @@ public class BaseUnit : MonoBehaviour
         }
     }
     #endregion
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
 }

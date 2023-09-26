@@ -32,7 +32,12 @@ public class GameManager : MonoBehaviour
 
     [Space, Header("Все для работы с клетками")]
     [SerializeField] private int _points;
-    
+    //Игровая камера и компоненты к ней
+    [SerializeField] private Camera _mainCamera;
+    private void Awake()
+    {
+        _mainCamera = Camera.main;
+    }
 
     private void Start()
     {
@@ -116,6 +121,9 @@ public class GameManager : MonoBehaviour
             _activeUnit = value;
         }
     }
-
+    public Camera GetGamera
+    {
+        get { return _mainCamera; }
+    }
     
 }

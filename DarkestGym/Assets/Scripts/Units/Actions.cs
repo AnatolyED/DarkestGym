@@ -9,14 +9,18 @@ public class Actions : MonoBehaviour
         float protectionHealth = armor * (Mathf.Pow(armorMultiplyer, point));
         return protectionHealth;
     }
-    public static void Move(GameObject unit,Transform startPosition, Transform nextPosition)
+    public static void Move(GameObject unit, Cell nextPosition)
     {
-        unit.transform.Translate(new Vector3(nextPosition.position.x,unit.transform.position.y,nextPosition.position.z));
+        while (Vector3.Distance(unit.transform.position, nextPosition.gameObject.transform.position) >= 0.05f)
+        {
+            unit.transform.position = Vector3.MoveTowards(unit.transform.position, nextPosition.gameObject.transform.position, Time.deltaTime);
+        }
+        nextPosition.GetUnit = unit;
     }
-    public static void Attack(int point,float damage, float damageMultiplyer,List<Ability> ability,BaseUnit enemy)
+    public static float Attack(int point, BaseUnit unit)
     {
-
-
+        float damage = point * unit.DamageMultiplier * unit.Damage;
+        return damage;
     }
     public static void Ability()
     {
