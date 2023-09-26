@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Actions : MonoBehaviour
@@ -13,19 +14,17 @@ public class Actions : MonoBehaviour
     {
         while (Vector3.Distance(unit.transform.position, nextPosition.gameObject.transform.position) >= 0.05f)
         {
-            unit.transform.position = Vector3.MoveTowards(unit.transform.position, nextPosition.gameObject.transform.position, Time.deltaTime);
+            unit.transform.position = Vector3.MoveTowards(unit.transform.position, nextPosition.gameObject.transform.position, 0.05f);
         }
         nextPosition.GetUnit = unit;
     }
     public static float Attack(int point, BaseUnit unit)
     {
-        float damage = point * unit.DamageMultiplier * unit.Damage;
+        float damage = ((point * (unit.DamageMultiplier - 1)) + 1) * unit.Damage;
         return damage;
     }
     public static void Ability()
     {
 
     }
-
-
 }

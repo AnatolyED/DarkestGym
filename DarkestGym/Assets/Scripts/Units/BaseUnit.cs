@@ -296,21 +296,22 @@ public class BaseUnit : MonoBehaviour
                             {
                                 target = hit.transform.gameObject.GetComponent<Cell>().GetUnit.GetComponent<BaseUnit>();
 
+                                if (this.GetUnitNumber != target.GetUnitNumber)
+                                {
+                                    target.TakeDamage = Actions.Attack(4, GetComponent<BaseUnit>()); // цифра - затычка
+                                    Debug.Log(_name + " нанес " + Actions.Attack(4, GetComponent<BaseUnit>()) + " урона " + target.Name);
+                                    _action = Action.Idle;
+                                }
+                                else
+                                {
+                                    Debug.Log("Сократи дистанцию!");
+                                    _action = Action.Idle;
+                                }
                             }
                             else
                             {
                                 Debug.Log("Этого бить нельзя!");
                             }
-                        }
-                        if (this.GetUnitNumber != target.GetUnitNumber)
-                        {
-                            target.TakeDamage = Actions.Attack(4, GetComponent<BaseUnit>()); // цифра - затычка
-                            Debug.Log(_name + " нанес " + Actions.Attack(4, GetComponent<BaseUnit>()) + " урона " + target.Name);
-                            _action = Action.Idle;
-                        }
-                        else
-                        {
-                            Debug.Log("Сократи дистанцию!");
                         }
                     }
                     break;
