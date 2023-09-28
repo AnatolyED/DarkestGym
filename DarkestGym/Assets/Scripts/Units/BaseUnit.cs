@@ -27,6 +27,8 @@ public class BaseUnit : MonoBehaviour
 
     [Header("Игровой менеджер")]
     [SerializeField] private GameManager _gameManager;
+
+    public Cell CurrentCell { get; set; }
     
     #region Статы персонажа
     [Header("Информация о персонаже")]
@@ -303,6 +305,7 @@ public class BaseUnit : MonoBehaviour
                                 newCell = hit.transform.gameObject.GetComponent<Cell>();
                                 if (newCell != null && move == null)
                                 {
+                                    CurrentCell = newCell;
                                     move = StartCoroutine(Actions.Move(this.gameObject, newCell, completeAction));
                                 }
                             }

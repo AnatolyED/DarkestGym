@@ -34,9 +34,30 @@ namespace DarkestGym.FieldGenerator
                 _randomRotation = Random.Range(0, _deegresOfRotation.Count);
 
                 GameObject Cell = Instantiate(_gameManager._prefabCell[_randomPrefab], _gameManager._cells[i].position, Quaternion.Euler(_deegresOfRotation[_randomRotation]), _gameMap.transform);
+                
+                CellCoordinate oldCellCoord;
+                CellCoordinate newCellCoord;
+                Cell newCell;
+                if (!_gameManager._cells[i].TryGetComponent(out oldCellCoord))
+                {
+                    Debug.LogError("There is no cell coordinate on old cell");
+                }
+                if (!Cell.TryGetComponent(out newCellCoord))
+                {
+                    Debug.LogError("There is no cell coordinate on new cell");
+                }
+                if (!Cell.TryGetComponent(out newCell))
+                {
+                    Debug.LogError("There is no cell on new cell");
+                }
+           
+                newCellCoord.RowNum = oldCellCoord.RowNum;
+                newCellCoord.DiagonalFirstNum = oldCellCoord.DiagonalFirstNum;
+                newCellCoord.DiagonalSecondNum = oldCellCoord.DiagonalSecondNum;
+                newCell._gameManager = _gameManager;
+
                 Destroy(_gameManager._cells[i].gameObject);
                 _gameManager._cells[i] = Cell.transform;
-                _gameManager._cells[i].gameObject.GetComponent<Cell>()._gameManager = gameObject.GetComponent<GameManager>();
             }
 
             for (int j = 0; j < _gameManager._waterObstaclesCells.Count; j++)

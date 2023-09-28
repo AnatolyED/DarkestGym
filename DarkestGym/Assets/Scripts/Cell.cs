@@ -12,6 +12,8 @@ public class Cell : MonoBehaviour
 
     [Space, Header("Unit")]
     [SerializeField] private GameObject _unitOnTheCell;
+
+    private CellCoordinate _cellCoordinate;
     public GameObject GetUnit
     {
         get { return _unitOnTheCell; }
@@ -27,6 +29,17 @@ public class Cell : MonoBehaviour
             }
         }
     }
+
+    public CellCoordinate CellCoordinate => _cellCoordinate;
+
+    private void Awake()
+    {
+        if(!TryGetComponent(out _cellCoordinate))
+        {
+            Debug.LogError("There is no cell coordinate on this cell");
+        }
+    }
+
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();

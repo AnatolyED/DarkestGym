@@ -23,16 +23,19 @@ public class TeamGenerator : MonoBehaviour
             Quaternion _rotation = player.GetPlayerNumber == PlayerNumber.First ? Quaternion.identity : Quaternion.Euler(0, -180, 0);
 
             GameObject _unit = Instantiate(unit, position[i].position, _rotation, player.gameObject.transform);
-            _unit.GetComponent<BaseUnit>().SetGameManager = player.GetGameManager;
-            _unit.GetComponent<BaseUnit>().GetUnitNumber = player.GetPlayerNumber;
-            position[i] = FindCell(position[i], gameManager);
-            position[i].GetComponent<Cell>().GetUnit = _unit;
-
-            if (_unit.TryGetComponent(out BaseUnit baseUnit))
+            BaseUnit baseUnit;
+            if(!_unit.TryGetComponent(out baseUnit))
             {
-                teamList.AddUnit(baseUnit);
+                Debug.LogError("Base unit has not been found on this object");
             }
 
+            baseUnit.SetGameManager = player.GetGameManager;
+            baseUnit.GetUnitNumber = player.GetPlayerNumber;
+            position[i] = FindCell(position[i], gameManager);
+            baseUnit.CurrentCell = position[i].GetComponent<Cell>();
+            position[i].GetComponent<Cell>().GetUnit = _unit;
+            teamList.AddUnit(baseUnit);
+            
             i++;
         }
 
