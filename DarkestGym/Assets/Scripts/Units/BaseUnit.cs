@@ -49,6 +49,14 @@ public class BaseUnit : MonoBehaviour
     private BuffManager _buffManager;
     public BuffManager BuffManager => _buffManager;
 
+    #region Events
+    /// <summary>
+    /// Fires when unit moves from start cell (first parameter) to
+    /// end cell (second parameter)
+    /// </summary>
+    public event System.Action<Cell, Cell> OnMoveStart;
+    #endregion
+
     private void Awake()
     {
         if(_buffManager != null)
@@ -305,6 +313,7 @@ public class BaseUnit : MonoBehaviour
                                 newCell = hit.transform.gameObject.GetComponent<Cell>();
                                 if (newCell != null && move == null)
                                 {
+                                    OnMoveStart(CurrentCell, newCell);
                                     CurrentCell = newCell;
                                     move = StartCoroutine(Actions.Move(this.gameObject, newCell, completeAction));
                                 }
@@ -376,6 +385,14 @@ public class BaseUnit : MonoBehaviour
         }
     }
     #endregion
+
+    public void ApplyPassiveAbilities()
+    {
+        _passiveAbilitiesList.ForEach(passiveAbility =>
+        {
+            passiveAbility.Apply();
+        });
+    }
 
     private void Die()
     {

@@ -12,6 +12,7 @@ public class RangeLvl1Ability : PassiveAbility
 
     public override void Apply()
     {
-
+        InfinityBuff buff = BuffsDataManager.Instance.RangeLvl1BuffData.GetBuff(AbilityOwner);
+        buff.Use();
     }
 }

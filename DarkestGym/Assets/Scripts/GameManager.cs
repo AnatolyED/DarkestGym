@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -116,6 +119,10 @@ public class GameManager : MonoBehaviour
         }
 
         TeamManager.Init(tl1, tl2);
+
+        TeamManager.GetAllUnits().ForEach(unit => {
+            unit.ApplyPassiveAbilities();
+        });
 
         _playerTurn = PlayerNumber.First;
     }

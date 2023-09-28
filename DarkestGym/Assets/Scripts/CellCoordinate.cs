@@ -25,7 +25,7 @@ public class CellCoordinate : MonoBehaviour
         set { _diagonalSecondNum = value; }
     }
 
-    public int GetDist(CellCoordinate cc1, CellCoordinate cc2)
+    public static int Dist(CellCoordinate cc1, CellCoordinate cc2)
     {
         int firstDigDiff = Math.Abs(cc1.DiagonalFirstNum - cc2.DiagonalFirstNum);
         int secondDigDiff = Math.Abs(cc1.DiagonalSecondNum - cc2.DiagonalSecondNum);
