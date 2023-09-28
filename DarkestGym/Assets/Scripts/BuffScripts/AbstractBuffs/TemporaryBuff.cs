@@ -2,27 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class TemporaryBuff : Buff
 {
-    #region Limits
-    [Space]
-    [Header("Ограничения на длительность способности (в ходах)")]
-    [SerializeField] private const int _minDuration = 0;
-    [SerializeField] private const int _maxDuration = 1000;
-    #endregion
-
     #region Private Vars
-    [Space]
-    [SerializeField] 
-    [Range(_minDuration, _maxDuration)]
-    [Header("Длительность способности (в ходах)")]
     private int _duration;
-
-    [Space]
-    [SerializeField]
-    [Range(_minDuration, _maxDuration)]
-    [Header("Ходов осталось для иссякания способности")]
     private int _movesLeft;
     #endregion
 
@@ -32,7 +17,7 @@ public abstract class TemporaryBuff : Buff
         get { return _duration; }
         set
         {
-            _duration = Math.Min(Math.Max(_minDuration, value), _maxDuration);
+            _duration = Math.Max(0, value);
         }
     }
 
@@ -41,28 +26,24 @@ public abstract class TemporaryBuff : Buff
         get { return _movesLeft; }
         set
         {
-            if (value > _minDuration && value <= _maxDuration)
-            {
-                _movesLeft = value;
-            }
-            else if (value <= _minDuration)
-            {
-                DeactivateBuff();
-                _movesLeft = _minDuration;
-            }
-            else
-            {
-                _movesLeft = _maxDuration;
-            }
+            if(value <= 0) DeactivateBuff();
+            _movesLeft = Math.Max(0, value);
         }
     }
     #endregion
+
+    public TemporaryBuff(Image image, string name, BaseUnit buffOwner, int duration) : base(image, name, buffOwner)
+    {
+        _duration = duration;
+        _movesLeft = _duration;
+    }
     
     public sealed override void Use()
     {
         ActivateBuff();
         GameManager.Instance.RoundManager.OnNextRound += TimerReducer;
         GameManager.Instance.RoundManager.OnNextRound += OnMoveAction;
+        BuffOwner.BuffManager.AddTemporaryBuff(this);
     }
 
     public sealed override void Unuse()
@@ -70,6 +51,7 @@ public abstract class TemporaryBuff : Buff
         MovesLeft = 0;
         GameManager.Instance.RoundManager.OnNextRound -= TimerReducer;
         GameManager.Instance.RoundManager.OnNextRound -= OnMoveAction;
+        BuffOwner.BuffManager.RemoveTemporaryBuff(this);
     }
 
     private void TimerReducer()

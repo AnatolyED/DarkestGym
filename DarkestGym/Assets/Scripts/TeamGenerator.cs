@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class TeamGenerator : MonoBehaviour
 {
-    public static void GenerateTeam(Player player, List <Transform> position, GameManager gameManager)
+    public static void GenerateTeam(Player player, List <Transform> position, GameManager gameManager, out TeamList teamList)
     {
         int i = 0;
         Team _generateTeam = player.Team;
+        teamList = new TeamList();
 
         foreach (GameObject unit in _generateTeam.GetTeam)
         {
@@ -20,6 +21,11 @@ public class TeamGenerator : MonoBehaviour
             #endregion
 
             GameObject _unit = Instantiate(unit, position[i].position,Quaternion.identity, player.gameObject.transform);
+            
+            if(_unit.TryGetComponent(out BaseUnit baseUnit))
+            {
+                teamList.AddUnit(baseUnit);
+            }
 
             position[i] = FindCell(position[i],gameManager);
             position[i].GetComponent<Cell>().GetUnit = _unit;

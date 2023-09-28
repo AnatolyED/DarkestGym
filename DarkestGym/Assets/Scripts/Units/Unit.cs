@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "Unit", menuName = "UnitBuild/UnitScriptableObject")]
 public class Unit : ScriptableObject
@@ -23,6 +24,10 @@ public class Unit : ScriptableObject
     [Header("Показатели связанные с броней")]
     [SerializeField, Tooltip("Показатель брони")] private float _armor;
     [SerializeField, Tooltip("Множитель брони")] private float _armorMultiplier;
+    [Header("Список пассивных способностей")]
+    [SerializeField] private List<PassiveAbilityData> _passiveAbilitiesList;
+    [Header("Список активных способностей")]
+    [SerializeField] private List<ActiveAbilityData> _activeAbilitiesList;
 
     #region Гетеры
     public string GetName
@@ -69,5 +74,8 @@ public class Unit : ScriptableObject
     {
         get { return _armorMultiplier; }
     }
+
+    public List<PassiveAbilityData> GetPassiveAbilitiesList => _passiveAbilitiesList;
+    public List<ActiveAbilityData> GetActiveAbilitiesList => _activeAbilitiesList;
     #endregion
 }

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +16,11 @@ public class BaseUnit : MonoBehaviour
 
     [Header("UI компоненты юнита")]
     [SerializeField] private Button[] actionButtons;
-    
+
+    [Header("Способности персонажа")]
+    [SerializeField] private List<ActiveAbility> _activeAbilitiesList;
+    [SerializeField] private List<PassiveAbility> _passiveAbilitiesList;
+
     #region Статы персонажа
     [Header("Информация о персонаже")]
     [SerializeField] public Unit _scriptableObject;
@@ -31,8 +37,24 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] private float _armorMultiplier;
     #endregion
 
+    private BuffManager _buffManager;
+    public BuffManager BuffManager => _buffManager;
+
     private void Awake()
     {
+        if(_buffManager != null)
+        {
+            Debug.LogError("Buff manager is not null on Awake method");
+        }
+        if(TryGetComponent(out BuffManager buffManager))
+        {
+            _buffManager = buffManager;
+        }
+        else
+        {
+            Debug.LogError("There is no BuffManager on baseUnit object");
+        }
+
         _action = Action.Idle;
         Name = _scriptableObject.GetName;
         Sprite = _scriptableObject.GetSprite;
@@ -45,6 +67,8 @@ public class BaseUnit : MonoBehaviour
         Range = _scriptableObject.GetRange;
         Armor = _scriptableObject.GetArmor;
         ArmorMultiplier = _scriptableObject.GetArmorMultiplier;
+        _activeAbilitiesList = _scriptableObject.GetActiveAbilitiesList.Select((aad) => {  return aad.GetAbility(this); }).ToList();
+        _passiveAbilitiesList = _scriptableObject.GetPassiveAbilitiesList.Select((pad) => {  return pad.GetAbility(this); }).ToList();
     }
 
     private void Start()

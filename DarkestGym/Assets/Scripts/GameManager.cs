@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public RoundManager RoundManager { get; private set; }
 
+    public TeamManager TeamManager { get; private set; } 
+
     private void Awake()
     {
         if (Instance != null)
@@ -55,41 +57,60 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("RoundManager does not equal null on Awake method");
         }
-        if(TryGetComponent(out RoundManager manager))
+        if(TryGetComponent(out RoundManager roundManager))
         {
-            RoundManager = manager;
+            RoundManager = roundManager;
         }
         else
         {
             Debug.LogError("RoundManager have not been found on GameManager object");
+        }
+
+        if (TeamManager != null)
+        {
+            Debug.LogError("TeamManager does not equal null on Awake method");
+        }
+        if (TryGetComponent(out TeamManager teamManager))
+        {
+            TeamManager = teamManager;
+        }
+        else
+        {
+            Debug.LogError("TeamManager have not been found on GameManager object");
         }
     }
 
     private void Start()
     {
         _firstPlayerUnitsPrefabPull = _playerOne.Team;
+        TeamList tl1;
+        TeamList tl2;
+
         if (_firstPlayerUnitsPrefabPull != null)
         {
-            TeamGenerator.GenerateTeam(_playerOne, _firstPlayerUnitPosition, GetComponent<GameManager>());
+            TeamGenerator.GenerateTeam(_playerOne, _firstPlayerUnitPosition, GetComponent<GameManager>(), out tl1);
+
         }
         else
         {
             int TeamNumber = Random.Range(0, _teamPrefabs.Count);
             _playerOne.Team =_teamPrefabs[TeamNumber];
-            TeamGenerator.GenerateTeam(_playerOne, _firstPlayerUnitPosition, GetComponent<GameManager>());
+            TeamGenerator.GenerateTeam(_playerOne, _firstPlayerUnitPosition, GetComponent<GameManager>(), out tl1);
         }
 
         _secondPlayerUnitsPrefabPull = _playerTwo.Team;
         if (_secondPlayerUnitsPrefabPull != null)
         {
-            TeamGenerator.GenerateTeam(_playerTwo, _secondPlayerUnitPosition, GetComponent<GameManager>());
+            TeamGenerator.GenerateTeam(_playerTwo, _secondPlayerUnitPosition, GetComponent<GameManager>(), out tl2);
         }
         else
         {
             int TeamNumber = Random.Range(0, _teamPrefabs.Count);
             _playerTwo.Team = _teamPrefabs[TeamNumber];
-            TeamGenerator.GenerateTeam(_playerTwo, _secondPlayerUnitPosition,GetComponent<GameManager>());
+            TeamGenerator.GenerateTeam(_playerTwo, _secondPlayerUnitPosition,GetComponent<GameManager>(), out tl2);
         }
+
+        TeamManager.Init(tl1, tl2);
 
         _playerTurn = PlayerNumber.First;
     }
