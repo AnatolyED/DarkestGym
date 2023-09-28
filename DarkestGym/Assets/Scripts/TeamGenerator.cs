@@ -19,34 +19,20 @@ public class TeamGenerator : MonoBehaviour
                 Debug.Log(unit.GetComponent<BaseUnit>()._scriptableObject.GetHealth);
             */
             #endregion
-
-            GameObject _unit = Instantiate(unit, position[i].position,Quaternion.identity, player.gameObject.transform);
             
-            if(_unit.TryGetComponent(out BaseUnit baseUnit))
+            Quaternion _rotation = player.GetPlayerNumber == PlayerNumber.First ? Quaternion.identity : Quaternion.Euler(0, -180, 0);
+
+            GameObject _unit = Instantiate(unit, position[i].position, _rotation, player.gameObject.transform);
+            _unit.GetComponent<BaseUnit>().SetGameManager = player.GetGameManager;
+            _unit.GetComponent<BaseUnit>().GetUnitNumber = player.GetPlayerNumber;
+            position[i] = FindCell(position[i], gameManager);
+            position[i].GetComponent<Cell>().GetUnit = _unit;
+
+            if (_unit.TryGetComponent(out BaseUnit baseUnit))
             {
                 teamList.AddUnit(baseUnit);
             }
 
-            position[i] = FindCell(position[i],gameManager);
-            position[i].GetComponent<Cell>().GetUnit = _unit;
-            
-            if (player.GetPlayerNumber == PlayerNumber.First)
-            {
-                GameObject _unit = Instantiate(unit, position[i].position, Quaternion.identity, player.gameObject.transform);
-                _unit.GetComponent<BaseUnit>().SetGameManager = player.GetGameManager;
-                _unit.GetComponent<BaseUnit>().GetUnitNumber = player.GetPlayerNumber;
-                position[i] = FindCell(position[i], gameManager);
-                position[i].GetComponent<Cell>().GetUnit = _unit;
-            }
-            else
-            {
-                GameObject _unit = Instantiate(unit, position[i].position, Quaternion.Euler(0,-180,0), player.gameObject.transform);
-                _unit.GetComponent<BaseUnit>().SetGameManager = player.GetGameManager;
-                _unit.GetComponent<BaseUnit>().GetUnitNumber = player.GetPlayerNumber;
-                position[i] = FindCell(position[i], gameManager);
-                position[i].GetComponent<Cell>().GetUnit = _unit;
-            }
-        
             i++;
         }
 
