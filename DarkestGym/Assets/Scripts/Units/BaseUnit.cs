@@ -287,7 +287,11 @@ public class BaseUnit : MonoBehaviour
                             }
                         }
 
-                    } else if(completeAction == false)
+                    }
+                    else
+                    {
+                        
+                    } /*else if(completeAction == false)
                     { 
 
                     }
@@ -303,7 +307,7 @@ public class BaseUnit : MonoBehaviour
                             completeAction = false;
                         }
                         _action = Action.Idle;
-                    }
+                    }*/
                     break;
                 case Action.Attack:
                     if (Input.GetMouseButtonDown(0))
