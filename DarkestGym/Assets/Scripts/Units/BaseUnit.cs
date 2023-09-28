@@ -253,6 +253,9 @@ public class BaseUnit : MonoBehaviour
     #region State
     private IEnumerator UnitState()
     {
+        //Взаимодействие с корутиной
+        bool completeAction = false;
+        Coroutine move = null;
         while (true)
         {
             //Для работы с клетками
@@ -265,7 +268,7 @@ public class BaseUnit : MonoBehaviour
                 case Action.Idle:
                     break;
                 case Action.Move:
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) && move == null)
                     {
                         Ray ray = _gameManager.GetGamera.ScreenPointToRay(mousePosition);
                         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -273,17 +276,33 @@ public class BaseUnit : MonoBehaviour
                             if (hit.transform.gameObject.GetComponent<Cell>() != null && hit.transform.gameObject.GetComponent<Cell>().GetUnit == null)
                             {
                                 newCell = hit.transform.gameObject.GetComponent<Cell>();
+                                if (newCell != null && move == null)
+                                {
+                                    move = StartCoroutine(Actions.Move(this.gameObject, newCell, completeAction));
+                                }
                             }
                             else
                             {
-                                Debug.Log("Сюда нельзя ходить");
+                                Debug.Log("Где-то ты допустил ошибку дружок-пиражок");
                             }
                         }
-                        if(newCell != null)
+
+                    } else if(completeAction == false)
+                    { 
+
+                    }
+                    else if(completeAction == true)
+                    {
+                        if (completeAction != false) 
                         {
-                            Actions.Move(this.gameObject, newCell);
-                            _action = Action.Idle;
+                            if (move != null)
+                            {
+                                StopCoroutine(move);
+                                move = null;
+                            }
+                            completeAction = false;
                         }
+                        _action = Action.Idle;
                     }
                     break;
                 case Action.Attack:
@@ -298,25 +317,24 @@ public class BaseUnit : MonoBehaviour
 
                                 if (this.GetUnitNumber != target.GetUnitNumber)
                                 {
-                                    target.TakeDamage = Actions.Attack(4, GetComponent<BaseUnit>()); // цифра - затычка
+                                    target.TakeDamage = Actions.Attack(3, GetComponent<BaseUnit>()); // цифра - затычка
                                     Debug.Log(_name + " нанес " + Actions.Attack(4, GetComponent<BaseUnit>()) + " урона " + target.Name);
                                     _action = Action.Idle;
                                 }
                                 else
                                 {
-                                    Debug.Log("Сократи дистанцию!");
-                                    _action = Action.Idle;
+                                    Debug.Log("Союзник е*лан!");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Этого бить нельзя!");
+                                Debug.Log("Врага тут нет");
                             }
                         }
                     }
                     break;
                 case Action.Block:
-                    ProtectionIndicatorHealth += Actions.Block(ScorePoint,Armor,ArmorMultiplier);
+                    ProtectionIndicatorHealth += Actions.Block(3,Armor,ArmorMultiplier);
                     _action = Action.Idle;
                     break;
                 case Action.Ability:
