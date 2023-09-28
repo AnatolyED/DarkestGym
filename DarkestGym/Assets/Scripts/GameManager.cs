@@ -43,7 +43,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public RoundManager RoundManager { get; private set; }
 
-    public TeamManager TeamManager { get; private set; } 
+    public TeamManager TeamManager { get; private set; }
+
+    //Игровая камера и компоненты к ней
+    [SerializeField] private Camera _mainCamera;
 
     private void Awake()
     {
@@ -78,12 +81,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("TeamManager have not been found on GameManager object");
         }
-    }
 
-    //Игровая камера и компоненты к ней
-    [SerializeField] private Camera _mainCamera;
-    private void Awake()
-    {
         _mainCamera = Camera.main;
     }
 

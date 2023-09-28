@@ -15,8 +15,8 @@ public class BaseUnit : MonoBehaviour
     [Header("Анимация")]
     [SerializeField] private Animator _animator;
 
-    [Header("UI компоненты юнита")]
-    [SerializeField] private Button[] actionButtons;
+    //[Header("UI компоненты юнита")]
+    //[SerializeField] private Button[] actionButtons;
 
     [Header("Способности персонажа")]
     [SerializeField] private List<ActiveAbility> _activeAbilitiesList;
