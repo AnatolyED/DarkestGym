@@ -80,6 +80,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Игровая камера и компоненты к ней
+    [SerializeField] private Camera _mainCamera;
+    private void Awake()
+    {
+        _mainCamera = Camera.main;
+    }
+
     private void Start()
     {
         _firstPlayerUnitsPrefabPull = _playerOne.Team;
@@ -168,6 +175,9 @@ public class GameManager : MonoBehaviour
             _activeUnit = value;
         }
     }
-
+    public Camera GetGamera
+    {
+        get { return _mainCamera; }
+    }
     
 }

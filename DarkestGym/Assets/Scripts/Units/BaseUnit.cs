@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class BaseUnit : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] private List<ActiveAbility> _activeAbilitiesList;
     [SerializeField] private List<PassiveAbility> _passiveAbilitiesList;
 
+    [SerializeField] private List<Buttons> actionButtons;
+
+    [Header("Игровой менеджер")]
+    [SerializeField] private GameManager _gameManager;
+    
     #region Статы персонажа
     [Header("Информация о персонаже")]
     [SerializeField] public Unit _scriptableObject;
@@ -77,6 +83,11 @@ public class BaseUnit : MonoBehaviour
     }
 
     #region Работа с параметрами
+
+    public GameManager SetGameManager
+    {
+        set { _gameManager = value; }
+    }
     public string Name
     {
         get { return _name; }
@@ -250,30 +261,104 @@ public class BaseUnit : MonoBehaviour
             _playerNumber = value;
         }
     }
+    public float TakeDamage
+    {
+        set 
+        { 
+            _health -= value;
+            if (_health <= 0) 
+            {
+                Die();
+            }
+        }
+    } //Получения урона персонажами;
     #endregion
 
     #region State
     private IEnumerator UnitState()
     {
+        //Взаимодействие с корутиной
+        bool completeAction = false;
+        Coroutine move = null;
         while (true)
         {
+            //Для работы с клетками
+            Cell newCell = null;
+            BaseUnit target = null;
+            Vector3 mousePosition = Input.mousePosition;
+
             switch (_action)
             {
                 case Action.Idle:
                     break;
                 case Action.Move:
-                    while (true)
+                    if (Input.GetMouseButtonDown(0) && move == null)
                     {
-                        break;
-                        //Трали-вали
+                        Ray ray = _gameManager.GetGamera.ScreenPointToRay(mousePosition);
+                        if (Physics.Raycast(ray, out RaycastHit hit))
+                        {
+                            if (hit.transform.gameObject.GetComponent<Cell>() != null && hit.transform.gameObject.GetComponent<Cell>().GetUnit == null)
+                            {
+                                newCell = hit.transform.gameObject.GetComponent<Cell>();
+                                if (newCell != null && move == null)
+                                {
+                                    move = StartCoroutine(Actions.Move(this.gameObject, newCell, completeAction));
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("Где-то ты допустил ошибку дружок-пиражок");
+                            }
+                        }
+
+                    } else if(completeAction == false)
+                    { 
+
                     }
-                    //Actions.Move();
+                    else if(completeAction == true)
+                    {
+                        if (completeAction != false) 
+                        {
+                            if (move != null)
+                            {
+                                StopCoroutine(move);
+                                move = null;
+                            }
+                            completeAction = false;
+                        }
+                        _action = Action.Idle;
+                    }
                     break;
                 case Action.Attack:
-                    
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Ray ray = _gameManager.GetGamera.ScreenPointToRay(mousePosition);
+                        if (Physics.Raycast(ray, out RaycastHit hit))
+                        {
+                            if (hit.transform.gameObject.GetComponent<Cell>() != null && hit.transform.gameObject.GetComponent<Cell>().GetUnit != null)
+                            {
+                                target = hit.transform.gameObject.GetComponent<Cell>().GetUnit.GetComponent<BaseUnit>();
+
+                                if (this.GetUnitNumber != target.GetUnitNumber)
+                                {
+                                    target.TakeDamage = Actions.Attack(3, GetComponent<BaseUnit>()); // цифра - затычка
+                                    Debug.Log(_name + " нанес " + Actions.Attack(4, GetComponent<BaseUnit>()) + " урона " + target.Name);
+                                    _action = Action.Idle;
+                                }
+                                else
+                                {
+                                    Debug.Log("Союзник е*лан!");
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("Врага тут нет");
+                            }
+                        }
+                    }
                     break;
                 case Action.Block:
-                    ProtectionIndicatorHealth += Actions.Block(ScorePoint,Armor,ArmorMultiplier);
+                    ProtectionIndicatorHealth += Actions.Block(3,Armor,ArmorMultiplier);
                     _action = Action.Idle;
                     break;
                 case Action.Ability:
@@ -287,4 +372,9 @@ public class BaseUnit : MonoBehaviour
         }
     }
     #endregion
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
 }
