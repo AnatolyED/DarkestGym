@@ -16,9 +16,6 @@ public class BaseUnit : MonoBehaviour
     [Header("Анимация")]
     [SerializeField] private Animator _animator;
 
-    //[Header("UI компоненты юнита")]
-    //[SerializeField] private Button[] actionButtons;
-
     [Header("Способности персонажа")]
     [SerializeField] private List<ActiveAbility> _activeAbilitiesList;
     [SerializeField] private List<PassiveAbility> _passiveAbilitiesList;
@@ -63,6 +60,7 @@ public class BaseUnit : MonoBehaviour
         }
 
         _action = Action.Idle;
+        _animator = GetComponent<Animator>();
         Name = _scriptableObject.GetName;
         Sprite = _scriptableObject.GetSprite;
         Speed = _scriptableObject.GetSpeed;
@@ -279,13 +277,13 @@ public class BaseUnit : MonoBehaviour
     private IEnumerator UnitState()
     {
         //Взаимодействие с корутиной
-        bool completeAction = false;
         Coroutine move = null;
+        //Для работы с клетками
+        Cell newCell = null;
+        BaseUnit target = null;
+
         while (true)
         {
-            //Для работы с клетками
-            Cell newCell = null;
-            BaseUnit target = null;
             Vector3 mousePosition = Input.mousePosition;
 
             switch (_action)
@@ -303,7 +301,7 @@ public class BaseUnit : MonoBehaviour
                                 newCell = hit.transform.gameObject.GetComponent<Cell>();
                                 if (newCell != null && move == null)
                                 {
-                                    move = StartCoroutine(Actions.Move(this.gameObject, newCell, completeAction));
+                                    move = StartCoroutine(Actions.Move(this.gameObject, newCell));
                                 }
                             }
                             else
@@ -312,21 +310,11 @@ public class BaseUnit : MonoBehaviour
                             }
                         }
 
-                    } else if(completeAction == false)
-                    { 
-
                     }
-                    else if(completeAction == true)
+                    if (newCell != null && Vector3.Distance(gameObject.transform.position, newCell.transform.position) <= 0)
                     {
-                        if (completeAction != false) 
-                        {
-                            if (move != null)
-                            {
-                                StopCoroutine(move);
-                                move = null;
-                            }
-                            completeAction = false;
-                        }
+                        StopCoroutine(move);
+                        newCell = null;
                         _action = Action.Idle;
                     }
                     break;

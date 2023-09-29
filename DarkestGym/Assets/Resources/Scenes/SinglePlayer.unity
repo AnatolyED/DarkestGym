@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44492534, g: 0.4944986, b: 0.5736464, a: 1}
+  m_IndirectSpecularColor: {r: 0.44492602, g: 0.49449933, b: 0.5736476, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2293,6 +2293,7 @@ GameObject:
   - component: {fileID: 539973262}
   - component: {fileID: 539973261}
   - component: {fileID: 539973263}
+  - component: {fileID: 539973264}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3125,6 +3126,7 @@ MonoBehaviour:
   - {fileID: 649904560}
   - {fileID: 1497125679}
   _points: 0
+  _mainCamera: {fileID: 0}
 --- !u!4 &539973260
 Transform:
   m_ObjectHideFlags: 0
@@ -3154,6 +3156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbbbb3b8afc6b4498ebeacd959f0956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 539973259}
+  _round: 1
 --- !u!114 &539973262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3166,6 +3170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfe2b3800683c44e926c9843878e6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 539973259}
 --- !u!114 &539973263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3179,6 +3184,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rangeLvl1BuffData: {fileID: 0}
+--- !u!114 &539973264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539973258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ec4fa7259ae3e4a919020dc9c16965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
+  _moveButton: {fileID: 1668502207}
+  _attackButton: {fileID: 1089532483}
+  _blockButton: {fileID: 745780535}
+  _waitButton: {fileID: 20741197}
+  _skillButton: {fileID: 1210120144}
+  _selectedUnit: {fileID: 0}
+  _selectedUnitText: {fileID: 0}
+  _enemyUnit: {fileID: 0}
+  _enemyUnitText: {fileID: 0}
 --- !u!4 &542763610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5829975532542212613, guid: 0eb21a7aebdba8a4b82db46b0791b415, type: 3}

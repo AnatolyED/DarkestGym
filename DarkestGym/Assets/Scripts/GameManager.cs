@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -87,10 +88,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _firstPlayerUnitsPrefabPull = _playerOne.Team;
         TeamList tl1;
         TeamList tl2;
 
+        _firstPlayerUnitsPrefabPull = _playerOne.Team;
         if (_firstPlayerUnitsPrefabPull != null)
         {
             TeamGenerator.GenerateTeam(_playerOne, _firstPlayerUnitPosition, GetComponent<GameManager>(), out tl1);
@@ -119,6 +120,7 @@ public class GameManager : MonoBehaviour
 
         _playerTurn = PlayerNumber.First;
     }
+    #region Геттеры и сеттеры
     public Player GetFirstPlayer
     {
         get { return _playerOne; }
@@ -177,5 +179,5 @@ public class GameManager : MonoBehaviour
     {
         get { return _mainCamera; }
     }
-    
+    #endregion
 }

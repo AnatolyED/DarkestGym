@@ -29,16 +29,24 @@ public class Actions : MonoBehaviour
 
     }
 
-    public static IEnumerator Move(GameObject unit, Cell nextPosition, bool completeAction)
+    public static IEnumerator Move(GameObject unit, Cell nextPosition)
     {
-        while (Vector3.Distance(unit.transform.position, nextPosition.gameObject.transform.position) >= 0.1f)
+        while (Vector3.Distance(unit.transform.position, nextPosition.gameObject.transform.position) >= 0f)
         {
             unit.transform.position = Vector3.MoveTowards(unit.transform.position, nextPosition.gameObject.transform.position, 1f * Time.deltaTime);
+            unit.GetComponent<BaseUnit>().Animator.SetTrigger("WalkTrigger");
             yield return null;
         }
+        unit.GetComponent<BaseUnit>().Animator.SetTrigger("IdleTrigger");
         nextPosition.GetUnit = unit;
-        completeAction = true;
-        Debug.Log("Я дошел" + completeAction);
         yield return true;
+    }
+
+    public static IEnumerator FindinPath()
+    {
+        List<Cell> finalPath;
+        
+
+        yield return null;
     }
 }

@@ -21,4 +21,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject _selectedUnitText;
     [SerializeField] private Image _enemyUnit;
     [SerializeField] private GameObject _enemyUnitText;
+
+    #region События на нажатие кнопок
+    #endregion
 }

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     //команда
     [Header("Параметры игрока")]
     [SerializeField] private Team _team;
+
     public PlayerNumber GetPlayerNumber
     {
         get { return _playerNumber; }

@@ -12,14 +12,7 @@ public class TeamGenerator : MonoBehaviour
         teamList = new TeamList();
 
         foreach (GameObject unit in _generateTeam.GetTeam)
-        {
-            #region Test
-            /*
-                Debug.Log(unit.GetComponent<BaseUnit>()._scriptableObject.GetName);
-                Debug.Log(unit.GetComponent<BaseUnit>()._scriptableObject.GetHealth);
-            */
-            #endregion
-            
+        {            
             Quaternion _rotation = player.GetPlayerNumber == PlayerNumber.First ? Quaternion.identity : Quaternion.Euler(0, -180, 0);
 
             GameObject _unit = Instantiate(unit, position[i].position, _rotation, player.gameObject.transform);

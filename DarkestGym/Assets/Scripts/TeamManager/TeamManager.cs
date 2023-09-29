@@ -5,6 +5,8 @@ using System.Linq;
 
 public class TeamManager : MonoBehaviour
 {
+    [SerializeField] private GameManager _gameManager;
+
     private TeamList _teamListPlayer1 = null;
     private TeamList _teamListPlayer2 = null;
 
