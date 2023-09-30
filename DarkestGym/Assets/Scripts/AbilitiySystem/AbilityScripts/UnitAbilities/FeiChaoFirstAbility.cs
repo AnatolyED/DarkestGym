@@ -23,7 +23,7 @@ public class FeiChaoFirstAbility : ActiveAbility
 
     }
 
-    protected override void UseAbiltiy()
+    protected override void UseAbility()
     {
 
     }

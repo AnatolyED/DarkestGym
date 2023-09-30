@@ -40,5 +40,5 @@ public abstract class ActiveAbility : Ability
 
     public abstract void StartPrepare();
     public abstract void StopPrepare();
-    protected abstract void UseAbiltiy();
+    protected abstract void UseAbility();
 }
