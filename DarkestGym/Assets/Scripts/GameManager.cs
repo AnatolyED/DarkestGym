@@ -124,6 +124,8 @@ public class GameManager : MonoBehaviour
             unit.ApplyPassiveAbilities();
         });
 
+        RoundManager.Init(TeamManager.GetAllUnits());
+
         _playerTurn = PlayerNumber.First;
     }
     public Player GetFirstPlayer

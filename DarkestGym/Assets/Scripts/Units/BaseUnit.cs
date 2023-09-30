@@ -51,10 +51,16 @@ public class BaseUnit : MonoBehaviour
 
     #region Events
     /// <summary>
-    /// Fires when unit moves from start cell (first parameter) to
-    /// end cell (second parameter)
+    /// Fires when unit (first parameter) moves from start cell (second parameter) to
+    /// end cell (third parameter)
     /// </summary>
-    public event System.Action<Cell, Cell> OnMoveStart;
+    public event System.Action<BaseUnit, Cell, Cell> OnMoveStart;
+
+    /// <summary>
+    /// Fires when this unit has been damaged by another unit (first)
+    /// with amount of damage (second)
+    /// </summary>
+    public event System.Action<BaseUnit, float> OnBeenDamaged;
     #endregion
 
     private void Awake()
@@ -272,17 +278,6 @@ public class BaseUnit : MonoBehaviour
             _playerNumber = value;
         }
     }
-    public float TakeDamage
-    {
-        set 
-        { 
-            _health -= value;
-            if (_health <= 0) 
-            {
-                Die();
-            }
-        }
-    } //Получения урона персонажами;
     #endregion
 
     #region State
@@ -313,8 +308,9 @@ public class BaseUnit : MonoBehaviour
                                 newCell = hit.transform.gameObject.GetComponent<Cell>();
                                 if (newCell != null && move == null)
                                 {
-                                    OnMoveStart(CurrentCell, newCell);
+                                    Cell oldCell = CurrentCell;
                                     CurrentCell = newCell;
+                                    OnMoveStart?.Invoke(this, oldCell, newCell);
                                     move = StartCoroutine(Actions.Move(this.gameObject, newCell, completeAction));
                                 }
                             }
@@ -354,7 +350,7 @@ public class BaseUnit : MonoBehaviour
 
                                 if (this.GetUnitNumber != target.GetUnitNumber)
                                 {
-                                    target.TakeDamage = Actions.Attack(3, GetComponent<BaseUnit>()); // цифра - затычка
+                                    target.TakeDamage(this, Actions.Attack(3, GetComponent<BaseUnit>())); // цифра - затычка
                                     Debug.Log(_name + " нанес " + Actions.Attack(4, GetComponent<BaseUnit>()) + " урона " + target.Name);
                                     _action = Action.Idle;
                                 }
@@ -392,6 +388,17 @@ public class BaseUnit : MonoBehaviour
         {
             passiveAbility.Apply();
         });
+    }
+
+    //Получения урона персонажами
+    public void TakeDamage(BaseUnit damageSource, float damage)
+    {
+        OnBeenDamaged?.Invoke(damageSource, damage);
+        _health -= damage;
+        if (_health <= 0)
+        {
+            Die();
+        }
     }
 
     private void Die()

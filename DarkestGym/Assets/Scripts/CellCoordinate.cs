@@ -37,4 +37,9 @@ public class CellCoordinate : MonoBehaviour
 
         return Math.Min(sum1, Math.Min(sum2, sum3));
     }
+
+    public override string ToString()
+    {
+        return $"RowNum: {_rowNum} | DiagonalFirstNum: {_diagonalFirstNum} | DiagonalSecondNum: {_diagonalSecondNum}";
+    }
 }

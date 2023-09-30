@@ -9721,7 +9721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a10a84bf985bc4cba3f0bcf8c886b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangeLvl1BuffData: {fileID: 0}
+  _rangeLvl1BuffData: {fileID: 11400000, guid: 5a1aebfcecf19db4192885e5511842ae, type: 2}
+  _tankLvl1BuffData: {fileID: 11400000, guid: 538723348f83d1944b0be7228be717e2, type: 2}
 --- !u!1 &541165343
 GameObject:
   m_ObjectHideFlags: 0
@@ -16182,7 +16183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rowNum: 5
   _diagonalFirstNum: 22
-  _diagonalSecondNum: 0
+  _diagonalSecondNum: 21
 --- !u!23 &991828997
 MeshRenderer:
   m_ObjectHideFlags: 0

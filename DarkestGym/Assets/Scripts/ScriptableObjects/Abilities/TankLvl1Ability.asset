@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d848babd3dc8c4c8664412c12f2354, type: 3}
-  m_Name: RangeLvl1Buff
+  m_Script: {fileID: 11500000, guid: 608e322e2496f4b44bca094896e931da, type: 3}
+  m_Name: TankLvl1Ability
   m_EditorClassIdentifier: 
   _image: {fileID: 0}
   _name: 
-  _distanceToWeak: 1

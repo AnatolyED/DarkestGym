@@ -24,5 +24,6 @@ MonoBehaviour:
   _range: 5
   _armor: 0
   _armorMultiplier: 0
-  _passiveAbilitiesList: []
+  _passiveAbilitiesList:
+  - {fileID: 11400000, guid: 0681f61bf7d732045878212fc466e403, type: 2}
   _activeAbilitiesList: []
