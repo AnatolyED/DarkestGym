@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class BaseUnit : MonoBehaviour
 {
@@ -61,6 +60,16 @@ public class BaseUnit : MonoBehaviour
     /// with amount of damage (second)
     /// </summary>
     public event System.Action<BaseUnit, float> OnBeenDamaged;
+
+    /// <summary>
+    /// Fires when this unit has been killed by another unit (first)
+    /// </summary>
+    public event System.Action<BaseUnit> OnBeenKilled;
+
+    /// <summary>
+    /// Fires when this unit killes another unit (first)
+    /// </summary>
+    public event System.Action<BaseUnit> OnKilled;
     #endregion
 
     private void Awake()
@@ -143,7 +152,8 @@ public class BaseUnit : MonoBehaviour
             }
         }
     }
-    public int ScorePoint
+
+    /*public int ScorePoint
     {
         get { return _scorePoint; }
         set
@@ -155,10 +165,16 @@ public class BaseUnit : MonoBehaviour
             else
             {
                 Debug.Log("Ну тут явно какой-то обман");
-
             }
         }
+    }*/
+
+    public int ScorePoint
+    {
+        get { return _scorePoint; }
+        set { _scorePoint = value; }
     }
+
     public float Health
     {
         get { return _health; }
@@ -390,6 +406,26 @@ public class BaseUnit : MonoBehaviour
         });
     }
 
+    public void ShowActiveAbilitiesButtons()
+    {
+        int num = 0;
+        Vector3 margin = new Vector3(200, 0, 0);
+        foreach (Transform child in GameManager.Instance.CanvasObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (var activeAbility in  _activeAbilitiesList) 
+        {
+            Button btn = Instantiate(GameManager.Instance.ActiveAbilityBtnPrefab, GameManager.Instance.CanvasObject.transform);
+            btn.transform.position += margin * num;
+            btn.onClick.AddListener(() =>
+            {
+                Debug.Log("Started... ");
+                activeAbility.StartPrepare();
+            });
+        }
+    }
+
     //Получения урона персонажами
     public void TakeDamage(BaseUnit damageSource, float damage)
     {
@@ -397,6 +433,8 @@ public class BaseUnit : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
+            OnBeenKilled?.Invoke(damageSource);
+            damageSource.OnKilled?.Invoke(this);
             Die();
         }
     }

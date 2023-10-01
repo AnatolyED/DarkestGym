@@ -7,15 +7,22 @@ using UnityEngine;
 /// </summary>
 public class TargetSelector
 {
-    private static bool _targetSelectorIsActive = false;
-    private Coroutine _clickListener; 
+    private Coroutine _clickListener = null; 
+    private static LinkedList<TargetSelector> _targetSelectorList = new LinkedList<TargetSelector>();
+    private static TargetSelector _currentTargetSelector = null;
+
+    private Texture2D _cursorTexture;
+    private Vector2 _hotspot;
 
     /// <summary>
-    /// Shows if another TargetSelector is active now.
-    /// If another TargetSelector is active now, new TargetSelector will 
-    /// not be created.
+    /// Shows if this TargetSelector is active now 
     /// </summary>
-    public static bool TargetSelectorIsActive => _targetSelectorIsActive;
+    public bool IsActive { get; private set; }
+
+    /// <summary>
+    /// Amount of existing TargetSelectors
+    /// </summary>
+    public int TargetSelectorsCount => _targetSelectorList.Count + (_currentTargetSelector == null ? 0 : 1);
 
     /// <summary>
     /// Fires when user selects unit (first param)
@@ -26,8 +33,12 @@ public class TargetSelector
     /// </summary>
     public event System.Action OnTargetNotSelected;
     /// <summary>
-    /// Fires after OnTargerSelected and OnTargerNotSelected and 
-    /// finishes work of target selector
+    /// Fires when click happens, before OnTargetSelected
+    /// and OnTargetNotSelected events
+    /// </summary>
+    public event System.Action OnClick;
+    /// <summary>
+    /// Fires after closing TargetSelector
     /// </summary>
     public event System.Action OnTargetSelectorEnd;
 
@@ -44,30 +55,56 @@ public class TargetSelector
     /// </summary>
     public TargetSelector(Texture2D cursorTexture, Vector2 hotspot)
     {
-        if (!TargetSelectorIsActive)
+        _cursorTexture = cursorTexture;
+        _hotspot = hotspot;
+
+        if (_currentTargetSelector == null)
         {
-            Cursor.SetCursor(cursorTexture, hotspot, CursorMode.Auto);
-            OnTargetSelectorEnd += () =>
-            {
-                GameManager.Instance.StopCoroutine(_clickListener);
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-                _targetSelectorIsActive = false;
-            };
-            _clickListener = GameManager.Instance.StartCoroutine(ClickListener());
-            _targetSelectorIsActive = true;
+            _currentTargetSelector = this;
         }
         else
         {
-            Debug.LogError("Currently selecting something, close previous TargetSelector to use new");
+            _currentTargetSelector.IsActive = false;
+            _targetSelectorList.AddFirst(_currentTargetSelector);
+            GameManager.Instance.StopCoroutine(_currentTargetSelector._clickListener);
+            _currentTargetSelector = this;
         }
+
+        IsActive = true;
+        Cursor.SetCursor(_cursorTexture, _hotspot, CursorMode.Auto);
+        _clickListener = GameManager.Instance.StartCoroutine(ClickListener());
     }
 
     /// <summary>
-    /// Forcing finish of TargetSelector
+    /// Forcing finish TargetSelector
     /// </summary>
     public void Close()
     {
-        OnTargetSelectorEnd();
+        IsActive = false;
+        GameManager.Instance.StopCoroutine(_currentTargetSelector._clickListener);
+        _currentTargetSelector = null;
+
+        if (_targetSelectorList.Count > 0)
+        {
+            _currentTargetSelector = _targetSelectorList.First.Value;
+            _targetSelectorList.RemoveFirst();
+            _currentTargetSelector.IsActive = true;
+            Cursor.SetCursor(_currentTargetSelector._cursorTexture, _currentTargetSelector._hotspot, CursorMode.Auto);
+            GameManager.Instance.StartCoroutine(Delay());
+        }
+        else
+        { 
+            Cursor.SetCursor(_cursorTexture, _hotspot, CursorMode.Auto);
+        }
+
+        OnTargetSelectorEnd?.Invoke();
+    }
+
+    private IEnumerator Delay()
+    {
+        const float delay = 1f;
+        yield return new WaitForSeconds(delay);
+        _currentTargetSelector._clickListener = GameManager.Instance.StartCoroutine(_currentTargetSelector.ClickListener());
     }
 
     private IEnumerator ClickListener()
@@ -87,6 +124,7 @@ public class TargetSelector
                         {
                             if(hittedCell.GetUnit.TryGetComponent(out BaseUnit baseUnit))
                             {
+                                OnClick?.Invoke();
                                 OnTargetSelected?.Invoke(baseUnit);
                                 targetWasSelected = true;
                             }
@@ -97,8 +135,11 @@ public class TargetSelector
                         }
                     }
                 }
-                if(!targetWasSelected) OnTargetNotSelected();
-                OnTargetSelectorEnd?.Invoke();
+                if (!targetWasSelected)
+                {
+                    OnClick?.Invoke();
+                    OnTargetNotSelected?.Invoke();
+                }
             }
             yield return null;
         }

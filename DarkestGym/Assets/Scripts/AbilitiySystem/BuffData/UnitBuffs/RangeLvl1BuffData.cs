@@ -11,6 +11,6 @@ public class RangeLvl1BuffData : InfinityBuffData
 
     public override InfinityBuff GetBuff(BaseUnit abilityOwner)
     {
-        return new RangeLvl1Buff(Image, Name, abilityOwner, DistanceToWeak);
+         return new RangeLvl1Buff(Image, Name, abilityOwner, DistanceToWeak);
     }
 }

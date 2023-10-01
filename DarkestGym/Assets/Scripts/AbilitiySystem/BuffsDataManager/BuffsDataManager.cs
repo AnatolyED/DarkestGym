@@ -8,9 +8,11 @@ public class BuffsDataManager : MonoBehaviour
 
     [SerializeField] private RangeLvl1BuffData _rangeLvl1BuffData;
     [SerializeField] private TankLvl1BuffData _tankLvl1BuffData;
+    [SerializeField] private FeiChaoFirstBuffData _feiChaoFirstBuffData;
 
     public RangeLvl1BuffData RangeLvl1BuffData => _rangeLvl1BuffData;
     public TankLvl1BuffData TankLvl1AbilityData => _tankLvl1BuffData;
+    public FeiChaoFirstBuffData FeiChaoFirstBuffData => _feiChaoFirstBuffData;
 
     private void Awake()
     {

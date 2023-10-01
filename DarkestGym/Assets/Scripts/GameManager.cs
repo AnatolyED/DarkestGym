@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -50,6 +51,12 @@ public class GameManager : MonoBehaviour
 
     //Игровая камера и компоненты к ней
     [SerializeField] private Camera _mainCamera;
+
+    [SerializeField] private GameObject _canvasObject;
+    public GameObject CanvasObject => _canvasObject;
+
+    [SerializeField] private Button _activeAbilityBtnPrefab;
+    public Button ActiveAbilityBtnPrefab => _activeAbilityBtnPrefab;
 
     private void Awake()
     {
@@ -125,6 +132,13 @@ public class GameManager : MonoBehaviour
         });
 
         RoundManager.Init(TeamManager.GetAllUnits());
+
+        TargetSelector mainSelector = new TargetSelector();
+        mainSelector.OnTargetSelected += (unit) =>
+        {
+            Debug.Log(unit.Name);
+            unit.ShowActiveAbilitiesButtons();
+        };
 
         _playerTurn = PlayerNumber.First;
     }

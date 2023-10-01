@@ -3,7 +3,13 @@ guid: 51ab2565d9eb3a14fbc594502e910e28
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _target: {instanceID: 0}
+  - _animator: {instanceID: 0}
+  - _gameManager: {instanceID: 0}
+  - _scriptableObject: {instanceID: 0}
+  - _sprite: {instanceID: 0}
+  - _activeAbilityBtnPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
