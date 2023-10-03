@@ -88,6 +88,7 @@ public class BaseUnit : MonoBehaviour
         }
 
         _action = Action.Idle;
+        _animator = GetComponent<Animator>();
         Name = _scriptableObject.GetName;
         Sprite = _scriptableObject.GetSprite;
         Speed = _scriptableObject.GetSpeed;
