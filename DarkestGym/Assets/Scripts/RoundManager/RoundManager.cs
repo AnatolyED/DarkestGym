@@ -30,4 +30,19 @@ public class RoundManager : MonoBehaviour
 
         _isInit = true;
     }
+
+    private void Awake()
+    {
+        StartCoroutine(TestCorout());
+    }
+
+    // debug thing, remove later
+    private IEnumerator TestCorout()
+    {
+        while (true)
+        {
+            OnNextRound?.Invoke();
+            yield return new WaitForSeconds(6);
+        }
+    }
 }

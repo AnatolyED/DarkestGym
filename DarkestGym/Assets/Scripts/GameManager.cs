@@ -52,12 +52,6 @@ public class GameManager : MonoBehaviour
     //Игровая камера и компоненты к ней
     [SerializeField] private Camera _mainCamera;
 
-    [SerializeField] private GameObject _canvasObject;
-    public GameObject CanvasObject => _canvasObject;
-
-    [SerializeField] private Button _activeAbilityBtnPrefab;
-    public Button ActiveAbilityBtnPrefab => _activeAbilityBtnPrefab;
-
     private void Awake()
     {
         if (Instance != null)
@@ -134,10 +128,12 @@ public class GameManager : MonoBehaviour
         RoundManager.Init(TeamManager.GetAllUnits());
 
         TargetSelector mainSelector = new TargetSelector();
-        mainSelector.OnTargetSelected += (unit) =>
+        mainSelector.OnUnitSelected += (unit) =>
         {
             Debug.Log(unit.Name);
-            unit.ShowActiveAbilitiesButtons();
+            DeveloperUI.Instance.ShowActiveAbilities(unit);
+            DeveloperUI.Instance.ShowPassiveAbilities(unit);
+            DeveloperUI.Instance.ShowBuffs(unit);
         };
 
         _playerTurn = PlayerNumber.First;

@@ -32,6 +32,34 @@ public class Cell : MonoBehaviour
 
     public CellCoordinate CellCoordinate => _cellCoordinate;
 
+    public static void SwapCellsUnits(Cell c1, Cell c2)
+    {
+        var c1unit = c1._unitOnTheCell;
+        c1._unitOnTheCell = c2._unitOnTheCell;
+        c2._unitOnTheCell = c1unit;
+
+        if(c1._unitOnTheCell.TryGetComponent(out BaseUnit unitC1))
+        {
+            unitC1.CurrentCell = c1;
+        }
+        else
+        {
+            Debug.LogError("There is no BaseUnit comp on Cell GetUnit");
+        }
+
+        if (c2._unitOnTheCell.TryGetComponent(out BaseUnit unitC2))
+        {
+            unitC2.CurrentCell = c2;
+        }
+        else
+        {
+            Debug.LogError("There is no BaseUnit comp on Cell GetUnit");
+        }
+
+        unitC1.MoveToCurrentCell();
+        unitC2.MoveToCurrentCell();
+    }
+
     private void Awake()
     {
         if(!TryGetComponent(out _cellCoordinate))

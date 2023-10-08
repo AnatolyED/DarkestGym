@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FeiChaoSecondAbilityData : MonoBehaviour
+[CreateAssetMenu(fileName = "FeiChaoSecondAbility", menuName = "AbilityData/FeiChaoSecondAbility")]
+public class FeiChaoSecondAbilityData : PassiveAbilityData
 {
-    // Start is called before the first frame update
-    void Start()
+    public override PassiveAbility GetAbility(BaseUnit abilityOwner)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return new FeiChaoSecondAbility(Image, Name, abilityOwner);
     }
 }

@@ -24,3 +24,7 @@ MonoBehaviour:
   _range: 1
   _armor: 80
   _armorMultiplier: 1.12
+  _passiveAbilitiesList:
+  - {fileID: 11400000, guid: 457d1e87c0b3e9741a0c06fe2f17b0fb, type: 2}
+  _activeAbilitiesList:
+  - {fileID: 11400000, guid: 2c9a91d6fcd50f44eb8a464eaa5617b3, type: 2}

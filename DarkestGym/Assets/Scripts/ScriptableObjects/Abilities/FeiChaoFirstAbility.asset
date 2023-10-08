@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 0}
   _name: 
-  _abilityCost: 0
-  _cooldown: 0
-  _abilityCost: 0
-  _abilityCooldowm: 0
+  _abilityCost: 5
+  _cooldown: 3

@@ -35,8 +35,8 @@ public class TankLvl1Buff : InfinityBuff
     {
         if (_charges > 0 && damageSource.Range <= 1) 
         {
-            damageSource.TakeDamage(BuffOwner, damage * ReturnDamageMult);
             _charges--;
+            damageSource.TakeDamage(BuffOwner, damage * ReturnDamageMult);
         }
     }
 }

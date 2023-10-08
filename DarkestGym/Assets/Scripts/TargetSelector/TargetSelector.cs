@@ -27,11 +27,16 @@ public class TargetSelector
     /// <summary>
     /// Fires when user selects unit (first param)
     /// </summary>
-    public event System.Action<BaseUnit> OnTargetSelected;
+    public event System.Action<BaseUnit> OnUnitSelected;
     /// <summary>
-    /// Fires if user clicked but did not select unit
+    /// Fires when user selects block (first param) with unit
+    /// on it or without
     /// </summary>
-    public event System.Action OnTargetNotSelected;
+    public event System.Action<Cell> OnCellSelected;
+    /// <summary>
+    /// Fires if user clicked but did not select unit or block
+    /// </summary>
+    public event System.Action OnNothingSelected;
     /// <summary>
     /// Fires when click happens, before OnTargetSelected
     /// and OnTargetNotSelected events
@@ -113,6 +118,7 @@ public class TargetSelector
         {
             if (Input.GetMouseButtonDown(0))
             {
+                OnClick?.Invoke();
                 Vector3 mousePosition = Input.mousePosition;
                 Ray ray = GameManager.Instance.GetGamera.ScreenPointToRay(mousePosition);
                 bool targetWasSelected = false;
@@ -120,12 +126,12 @@ public class TargetSelector
                 {
                     if(hit.transform.gameObject.TryGetComponent(out Cell hittedCell))
                     {
+                        OnCellSelected?.Invoke(hittedCell);
                         if(hittedCell.GetUnit != null)
                         {
                             if(hittedCell.GetUnit.TryGetComponent(out BaseUnit baseUnit))
                             {
-                                OnClick?.Invoke();
-                                OnTargetSelected?.Invoke(baseUnit);
+                                OnUnitSelected?.Invoke(baseUnit);
                                 targetWasSelected = true;
                             }
                             else
@@ -137,8 +143,7 @@ public class TargetSelector
                 }
                 if (!targetWasSelected)
                 {
-                    OnClick?.Invoke();
-                    OnTargetNotSelected?.Invoke();
+                    OnNothingSelected?.Invoke();
                 }
             }
             yield return null;

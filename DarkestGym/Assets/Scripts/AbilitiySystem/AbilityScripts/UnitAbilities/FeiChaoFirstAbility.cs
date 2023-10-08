@@ -17,7 +17,7 @@ public class FeiChaoFirstAbility : ActiveAbility
     public override void StartPrepare()
     {
         _ts = new TargetSelector();
-        _ts.OnTargetSelected += (unit) =>
+        _ts.OnUnitSelected += (unit) =>
         {
             _target = unit;
             if(_target.GetUnitNumber == AbilityOwner.GetUnitNumber)
@@ -32,7 +32,7 @@ public class FeiChaoFirstAbility : ActiveAbility
                 Debug.Log("“кни по союзнику!!");
             }
         };
-        _ts.OnTargetNotSelected += () =>
+        _ts.OnNothingSelected += () =>
         {
             _ts.Close();
         };

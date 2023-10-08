@@ -48,6 +48,22 @@ public class BaseUnit : MonoBehaviour
     private BuffManager _buffManager;
     public BuffManager BuffManager => _buffManager;
 
+    public List<ActiveAbility> ActiveAbilities
+    {
+        get
+        {
+            return new List<ActiveAbility>(_activeAbilitiesList);
+        }
+    }
+
+    public List<PassiveAbility> PassiveAbilities
+    {
+        get
+        {
+            return new List<PassiveAbility>(_passiveAbilitiesList);
+        }
+    }
+
     #region Events
     /// <summary>
     /// Fires when unit (first parameter) moves from start cell (second parameter) to
@@ -176,7 +192,7 @@ public class BaseUnit : MonoBehaviour
         set { _scorePoint = value; }
     }
 
-    public float Health
+    /*public float Health
     {
         get { return _health; }
         set
@@ -194,7 +210,14 @@ public class BaseUnit : MonoBehaviour
                 Debug.Log("Ну тут явно какой-то обман");
             }
         }
+    }*/
+
+    public float Health
+    {
+        get { return _health; }
+        set { _health = value; }
     }
+
     public float ProtectionIndicatorHealth
     {
         get { return _protectionIndicatorHealth; }
@@ -210,7 +233,8 @@ public class BaseUnit : MonoBehaviour
             }
         }
     }
-    public float Damage
+    
+    /*public float Damage
     {
         get { return _damage; }
         set
@@ -224,7 +248,14 @@ public class BaseUnit : MonoBehaviour
                 Debug.Log("Ну тут явно какой-то обман");
             }
         }
+    }*/
+
+    public float Damage
+    {
+        get { return _damage; }
+        set { _damage = value; }
     }
+
     public float DamageMultiplier
     {
         get { return _damageMultiplier; }
@@ -407,26 +438,6 @@ public class BaseUnit : MonoBehaviour
         });
     }
 
-    public void ShowActiveAbilitiesButtons()
-    {
-        int num = 0;
-        Vector3 margin = new Vector3(200, 0, 0);
-        foreach (Transform child in GameManager.Instance.CanvasObject.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (var activeAbility in  _activeAbilitiesList) 
-        {
-            Button btn = Instantiate(GameManager.Instance.ActiveAbilityBtnPrefab, GameManager.Instance.CanvasObject.transform);
-            btn.transform.position += margin * num;
-            btn.onClick.AddListener(() =>
-            {
-                Debug.Log("Started... ");
-                activeAbility.StartPrepare();
-            });
-        }
-    }
-
     //Получения урона персонажами
     public void TakeDamage(BaseUnit damageSource, float damage)
     {
@@ -438,6 +449,12 @@ public class BaseUnit : MonoBehaviour
             damageSource.OnKilled?.Invoke(this);
             Die();
         }
+    }
+
+    // kostil
+    public void MoveToCurrentCell()
+    {
+        gameObject.transform.position = CurrentCell.transform.position;
     }
 
     private void Die()
