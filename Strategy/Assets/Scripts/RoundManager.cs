@@ -86,9 +86,9 @@ public class RoundManager : MonoBehaviour
     public void SortingUnitsAtTheStart(Player FirstPlayer, Player SecondPlayer,out Coroutine RoundManagerCorutine)
     {
         FirstTeam = FirstPlayer.GetUnits;
-        FirstTeam.Sort((a,b) => b.GetComponent<BaseUnit>().GetSetScorePoint.CompareTo(a.GetComponent<BaseUnit>().GetSetScorePoint));
+        FirstTeam = SortUnitPerPoint(FirstTeam);
         SecondTeam = SecondPlayer.GetUnits;
-        SecondTeam.Sort((a, b) => b.GetComponent<BaseUnit>().GetSetScorePoint.CompareTo(a.GetComponent<BaseUnit>().GetSetScorePoint));
+        SecondTeam = SortUnitPerPoint(SecondTeam);
         
         TheQueueOfCharacters = Sorting(FirstTeam,SecondTeam);
         RoundManagerCorutine = StartCoroutine(StartRoundManager());
@@ -150,6 +150,25 @@ public class RoundManager : MonoBehaviour
         }
         Debug.Log("Сортировка завершена!");
         return CompletedList;
+    }
+    private List<GameObject> SortUnitPerPoint(List<GameObject> List)
+    {
+        List<GameObject> CompleteList = new List<GameObject>(List.Count);
+        CompleteList[0] = List[0];
+        
+        for (int i = 0;i < CompleteList.Count;i++)
+        {
+            for (int j = 0; j < List.Count; j++)
+            {
+                if (CompleteList[i].GetComponent<BaseUnit>().GetSetScorePoint < List[j].GetComponent<BaseUnit>().GetSetScorePoint)
+                {
+                    var unit = CompleteList[i];
+                    CompleteList[i] = List[j];
+                    List[j] = unit;
+                }
+            }
+        }
+        return CompleteList;
     }
     private void RemoveNullElements(List<GameObject> List)
     {
